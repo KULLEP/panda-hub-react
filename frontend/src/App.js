@@ -1,26 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Toolbar from './components/Toolbar/Toolbar';
+import LeftScroll from './components/LeftScroll/LeftScroll';
+import LeftMenu from './components/LeftMenu/LeftMenu';
+import MyRedirect from './components/MyRedirect';
+
+
+import MemeList from './panels/MemeList/MemeList';
+import User from './panels/User/User';
+import Auth from './panels/Auth/Auth';
+import Register from './panels/Register/Register';
+import AccountApproved from './panels/Register/AccountApproved';
+import AccountRecovery from './panels/AccountRecovery/AccountRecovery';
+import 'semantic-ui-css/semantic.min.css';
+import './main.css';
+import 'bootstrap-4-react';
+
+
+const App = () => {
+
+      let email = localStorage.getItem('email');
+      let password = localStorage.getItem('password');
+
+
+      return (
+            <div>
+
+            <MyRedirect/>
+            { 
+                  email !== null && password !== null ? 
+                  <div>
+                  <Toolbar/>
+                  <LeftScroll/>
+                  <LeftMenu/>
+                  </div> : null
+            }
+            <div className='main'>
+            <div className='main-content'>
+            <Route exact path='/' component={MemeList} />
+            <Route exact path='/home' component={MemeList} />
+
+            <Route exact path='/Auth' component={Auth} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/account_recovery' component={AccountRecovery} />
+            <Route exact path='/account_approved' component={AccountApproved} />
+            </div>
+
+            <div className='main_user-content'>
+            <Route path='/user' component={User} />
+            </div>
+
+            </div>
+
+            </div>
+            );
 }
 
 export default App;

@@ -1,0 +1,124 @@
+import React from 'react';
+import $ from "jquery";
+import ReactDOM from 'react-dom';
+import MyComment from './../../components/BlockMeme/MyComment';
+import { Button } from 'semantic-ui-react';
+
+
+
+export class GetListComments {
+
+	url = window.globalInfo.php_url_meme;
+
+	constructor(id_meme, block_comment) { 
+		this.id_meme = id_meme;
+		this.block_comment = block_comment;
+	}
+
+
+	/* СПИСОК КОММЕНТАРИЕВ	 */
+	getComments() {
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'get_comments.php',
+			data: {
+				id_meme: this.id_meme,
+				block_comment: this.block_comment
+			},
+			success: e => { 
+				ReactDOM.render(
+					<MyComment arr_comm={JSON.parse(e)} block_comment={this.block_comment} />
+					,document.getElementById(this.block_comment)
+					)}
+			})
+		)
+	}
+}
+
+
+
+
+export class AddNewComment {
+
+	url = window.globalInfo.php_url_meme;
+
+	constructor(id_meme, comment, id_user, block_comment) { 
+		this.id_meme = id_meme;
+		this.comment = comment;
+		this.id_user = id_user;
+		this.block_comment = block_comment;
+	}
+
+	/* СПИСОК КОММЕНТАРИЕВ	 */
+	AddComm() {
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'add_comment.php',
+			data: {
+				id_meme: this.id_meme,
+				comment: this.comment,
+				id_user: this.id_user
+			},
+			success: e => { 
+				const getListComments = new GetListComments();
+				getListComments.getComm(this.id_meme, this.block_comment);
+			}
+		})
+		)
+	};
+}
+
+
+
+export class AddOrDelLike {
+
+	url = window.globalInfo.php_url_meme;
+
+	constructor(id_meme, is_like, id_block) { 
+		this.id_meme = id_meme;
+		this.is_like = is_like;
+		this.id_block = id_block;
+	}
+
+	/* ЛАЙК */
+	actionLike(e) {
+
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'like.php',
+			data: {
+				id_meme: this.id_meme,
+				is_like: this.is_like
+			},
+			success: e => { 
+				if(this.is_like === 'true') {
+					localStorage.removeItem(this.id_block);
+					ReactDOM.render(
+						<Button
+						color='red'
+						content='Нравится'
+						icon='heart outline'
+						label={{ basic: true, color: 'red', pointing: 'left', content: e }}
+						/>
+						,document.getElementById(this.id_block)
+						);
+				} else {
+					localStorage.setItem(this.id_block, 'true');
+					ReactDOM.render(
+						<Button
+						color='red'
+						content='Нравится'
+						icon='heart'
+						label={{ basic: true, color: 'red', pointing: 'left', content: e }}
+						/>
+						,document.getElementById(this.id_block)
+						);	
+				}
+			}}
+			)
+		)
+	}
+}
+
+
+

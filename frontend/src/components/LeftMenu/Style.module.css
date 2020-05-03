@@ -1,0 +1,12 @@
+.block {
+	position: fixed;
+	top: 60px;
+	float: left;
+	height: 100%;
+	width: 115px!important;
+	left: 100px;
+}
+
+.nav {
+	width: 100%!important; 
+}

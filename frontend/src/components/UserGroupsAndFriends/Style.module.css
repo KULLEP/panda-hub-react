@@ -1,0 +1,36 @@
+.block {
+	background-color: #fff;
+	width: 160px;
+	height: 100%;
+	display: flex;
+	border-radius: 4px;	background-color: white;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	justify-content: center;
+	padding: 10px;
+}
+
+.content {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+
+.item  {
+	float: left;
+	width: 70px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.item img {
+	border-radius: 100%;
+	width: 50px;
+	height: 50px;
+}
+
+.item p {
+
+}

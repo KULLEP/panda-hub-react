@@ -1,0 +1,7 @@
+.mainBlock {
+	width: 100%;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+

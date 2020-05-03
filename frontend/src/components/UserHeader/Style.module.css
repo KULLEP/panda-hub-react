@@ -1,0 +1,51 @@
+.header {
+	display: flex;
+	border-radius: 4px;	background-color: white;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	margin-bottom: 25px;
+}
+
+.header div {
+	padding: 10px 15px;
+}
+
+
+.left {
+	width: 150px;
+	text-align: center;
+}
+
+.left > img {
+	width: 135px;
+	height: 135px;
+	border-radius: 100%;
+}
+
+
+.center {
+	width: 450px;
+}
+
+.fullName {
+	font-size: 15px;
+	margin-bottom: 3px;
+}
+
+.nickname_country {
+	font-size: large;
+	margin-bottom: 3px;
+}
+
+.status {
+	font-size: 15px;
+}
+
+
+.right {
+	width: 300px;
+	text-align: center;
+}
+
+.rank {
+	font-size: large;
+}
