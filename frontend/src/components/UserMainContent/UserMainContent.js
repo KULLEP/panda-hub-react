@@ -33,7 +33,6 @@ const UserMainContent = ({info}) => {
 	useEffect(() => {
 		async function fetchRequest() {
 			await new GetListMemes().getMemes();
-				arr_memes = window.globalInfo.arrInfoMemes;
 			}
 			fetchRequest();
 		}, []);

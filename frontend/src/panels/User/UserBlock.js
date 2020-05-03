@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './Style.module.css';
-import Loader from './../../components/Loader/Loader';
 import UserHeader from './../../components/UserHeader/UserHeader';
 import UserGroups from './../../components/UserGroupsAndFriends/UserGroups';
 import UserFriends from './../../components/UserGroupsAndFriends/UserFriends';

@@ -1,5 +1,4 @@
-import React from 'react'
-import { List, Image } from 'semantic-ui-react'
+import React from 'react';
 import style from './Style.module.css';
 
 
@@ -15,7 +14,7 @@ const UserGroups = ({info}) => {
 		{
 			arrGroup.map(e => (
 				<div className={ style.item } >
-				<img avatar src='https://i.pinimg.com/736x/cc/60/c0/cc60c0b7f9664e6d66472b765a50ea56--banff-canada-in-canada.jpg' />
+				<img avatar src='https://i.pinimg.com/736x/cc/60/c0/cc60c0b7f9664e6d66472b765a50ea56--banff-canada-in-canada.jpg' alt='...' />
 				<p>Group {e}</p>
 				</div>
 				))
