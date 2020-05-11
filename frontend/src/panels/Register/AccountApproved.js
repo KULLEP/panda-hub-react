@@ -5,6 +5,8 @@ import { AccountApprovedClass } from './_scripts.js';
 
 const AccountApproved = () => {
 
+	document.title = 'Подтверждение аккаунта';
+
 	const submit = async () => {
 		let code = document.getElementById('code').value;
 		let email = localStorage.getItem('email_access');

@@ -82,7 +82,7 @@ export class RegisterClass {
 							success: e => { 
 								console.log(e);
 								if(e === '1') {
-									alert('Аккаунт успешно создан');
+									alert('Аккаунт активирован');
 									localStorage.clear();
 									ReactDOM.render(
 										<HashRouter>

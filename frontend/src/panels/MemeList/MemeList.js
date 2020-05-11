@@ -6,6 +6,7 @@ import Loader from './../../components/Loader/Loader';
 
 const MemeList = () => {
 
+	document.title = 'Новости';
 
 	const [popout, setPopout] = useState(<Loader/>);
 	var arr_memes = window.globalInfo.arrInfoMemes;
@@ -22,18 +23,15 @@ const MemeList = () => {
 
 
 	return (
-		<div>
+		<div className='w-100'>
 		<MyRedirect/>
-
 		{
 			popout !== null ? popout :
 			arr_memes.map(e => (
 				<BlockMeme info={e} />
 				))
 		}
-		
-
 		</div>
 		)
-}
-export default MemeList;
+	}
+	export default MemeList;

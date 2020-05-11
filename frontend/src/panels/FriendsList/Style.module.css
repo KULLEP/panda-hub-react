@@ -1,0 +1,34 @@
+.mainBlock {
+	width: 100%;
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	display: flex;
+	justify-content: center;
+	margin: 0px!important;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+
+.cardUser {
+	width: 160px!important;
+	margin: 15px 15px!important;
+}
+
+.cardUser img {
+	object-fit: cover;
+	height: 160px;
+	width: 100%;
+}
+
+.nickname {
+	height: 40px;
+}
+
+
+.buttonFindFriend {
+	left: 430px;
+	position: relative;
+}

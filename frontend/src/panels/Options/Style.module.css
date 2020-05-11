@@ -1,0 +1,9 @@
+.checkBlock {
+	display: flex;	
+	justify-content: center;
+}
+
+.checkBlock span {
+	margin-right: 5px;
+	columns: 100px;
+}

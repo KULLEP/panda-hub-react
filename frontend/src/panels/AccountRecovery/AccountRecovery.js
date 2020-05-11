@@ -4,6 +4,8 @@ import React from 'react';
 
 const AccountRecovery = () => {
 
+	document.title = 'Восстановление аккаунта';
+
 	// const submit = () => {
 	// 	let mail = document.getElementById('mail').value;
 	// 	let password = document.getElementById('password').value;

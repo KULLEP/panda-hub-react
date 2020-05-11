@@ -1,9 +1,8 @@
 import React from 'react';
 import $ from "jquery";
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Redirect } from 'react-router-dom';
 import App from './../../App';
-import { Redirect } from 'react-router-dom';
 
 export class AuthClass {
 

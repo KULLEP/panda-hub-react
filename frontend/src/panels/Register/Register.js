@@ -6,6 +6,8 @@ import { RegisterClass } from './_scripts.js';
 
 const Register = () => {
 
+	document.title = 'Регистрация';
+
 	const submit = async () => {
 		let first_name = document.getElementById('first_name').value;
 		let last_name = document.getElementById('last_name').value;

@@ -4,24 +4,24 @@ import MyRedirect from './../../components/MyRedirect';
 import { GetInfoUser } from './_scripts';
 import UserBlock from './UserBlock';
 import Loader from './../../components/Loader/Loader';
+import { goToMainPage } from './../../_scripts/RedirectOnPage';
 
-const User = () => {
+const User = ({match}) => {
 
 	const [popout, setPopout] = useState(<Loader/>);
 
-	const id_user = window.location.hash.slice(7);
-	const user_info_block = 'user_content_' + id_user;
+	const id = match.params.number;
+	const user_info_block = 'user_content_' + id;
+	console.log(user_info_block);
 
 
 	useEffect(() => {
 		async function fetchRequest() {
-			await new GetInfoUser(id_user).getInfo();
-			var info = window.globalInfo.infoUser;
-			if(window.globalInfo.infoUser !== null) {
+			await new GetInfoUser(id).getInfo();
+			if(!!window.globalInfo.infoUser) {
+				document.title = window.globalInfo.infoUser.first_name + ' '+ window.globalInfo.infoUser.last_name;
 				setPopout(null);
-				ReactDOM.render(<UserBlock info={info} />
-					,document.getElementById(user_info_block));
-			} else window.location.hash = '#/home';
+			} else goToMainPage();
 		}
 		fetchRequest();
 	}, []);
@@ -33,7 +33,7 @@ const User = () => {
 		<MyRedirect/>
 		<div id={user_info_block}>
 		{
-			popout !== null ? popout : null		 
+			popout !== null ? popout : <UserBlock info={window.globalInfo.infoUser} />		 
 		}
 		</div>
 		</div>

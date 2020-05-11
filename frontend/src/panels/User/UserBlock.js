@@ -7,8 +7,6 @@ import UserMainContent from './../../components/UserMainContent/UserMainContent'
 
 const UserBlock = ({info}) => {
 
-console.log(info);
-
 	return (
 		<div className={ style.mainBlock }>
 		<UserHeader info={info} />

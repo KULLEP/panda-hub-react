@@ -8,6 +8,7 @@
 	height: 42px;
 }
 
+
 .logo {
 	color: white;
 	width: 40px;
@@ -15,11 +16,15 @@
 	display: inline-block;
 	font-size: 27px;
 	font-family: monospace;
+	cursor: pointer;
 }
 
 .content {
-	padding: 0 15px;
 	display: flex;
+	position: relative;
+	margin: 0 auto;
+	padding: 0 15px;
+	width: 960px;
 }
 
 .search {
@@ -37,7 +42,7 @@
 
 .nameBlock {
 	position: fixed;
-	right: 20px;
+	right: 150px;
 	padding: 0 5px;
 	display: inline-block;
 	color: white;
@@ -47,8 +52,8 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.nameBlock span {
-	padding-right: 10px;
+.textName {
+	padding-right: 20px;
 	display: inline-block;
 	vertical-align: top;
 	white-space: nowrap;
@@ -68,4 +73,29 @@
 
 .nameBlock:hover {
 	background-color: #1C2833 ;
+}
+
+
+.item_menu {
+	position: relative;
+	cursor: pointer;
+	display: block;
+	border: none;
+	height: auto;
+	text-align: left;
+	border-top: none;
+	line-height: 1em;
+	color: rgba(0,0,0,.87);
+	padding: .78571429rem 1.14285714rem!important;
+	font-size: 1rem;
+	text-transform: none;
+	font-weight: 400;
+	box-shadow: none;
+	-webkit-touch-callout: none;
+	text-decoration: none!important;
+}
+
+.item_menu:hover {
+	background-color: #F2F2F2;
+	color: rgba(0,0,0,.87);
 }

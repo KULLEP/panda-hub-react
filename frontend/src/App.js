@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
 import Toolbar from './components/Toolbar/Toolbar';
@@ -6,13 +6,21 @@ import LeftScroll from './components/LeftScroll/LeftScroll';
 import LeftMenu from './components/LeftMenu/LeftMenu';
 import MyRedirect from './components/MyRedirect';
 
-
 import MemeList from './panels/MemeList/MemeList';
+import FriendsList from './panels/FriendsList/FriendsList';
+import UsersList from './panels/UsersList/UsersList';
+import GamesList from './panels/GamesList/GamesList';
 import User from './panels/User/User';
 import Auth from './panels/Auth/Auth';
 import Register from './panels/Register/Register';
 import AccountApproved from './panels/Register/AccountApproved';
 import AccountRecovery from './panels/AccountRecovery/AccountRecovery';
+import GameMain from './panels/GameMain/GameMain';
+import ChatsList from './panels/ChatsList/ChatsList';
+import Options from './panels/Options/Options';
+import ChatMain from './panels/ChatMain/ChatMain';
+import OptionsLeftMenu from './panels/Options/OptionsLeftMenu';
+import { GetInfoCurrentUser } from './_scripts/ActionsWithUser';
 import 'semantic-ui-css/semantic.min.css';
 import './main.css';
 import 'bootstrap-4-react';
@@ -20,41 +28,74 @@ import 'bootstrap-4-react';
 
 const App = () => {
 
-      let email = localStorage.getItem('email');
-      let password = localStorage.getItem('password');
+  const [popout, setPopout] = useState('');
+  let email = localStorage.getItem('email');
+  let password = localStorage.getItem('password');
+  let info = window.globalInfo.infoCurrentUser;
+
+  useEffect(() => {
+    async function fetchRequest() {
+      if(!!email && !!password) {
+       await new GetInfoCurrentUser(email, password).getInfo();
+     }     
+     setPopout(null);        
+   }
+   fetchRequest();
+ });
 
 
-      return (
-            <div>
+///       <Route path='/chat/:number' component={Chat} />
 
-            <MyRedirect/>
-            { 
-                  email !== null && password !== null ? 
-                  <div>
-                  <Toolbar/>
-                  <LeftScroll/>
-                  <LeftMenu/>
-                  </div> : null
-            }
-            <div className='main'>
-            <div className='main-content'>
-            <Route exact path='/' component={MemeList} />
-            <Route exact path='/home' component={MemeList} />
+return (
+  <div>
 
-            <Route exact path='/Auth' component={Auth} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/account_recovery' component={AccountRecovery} />
-            <Route exact path='/account_approved' component={AccountApproved} />
-            </div>
+  <MyRedirect/>
 
-            <div className='main_user-content'>
-            <Route path='/user' component={User} />
-            </div>
+  {
+    ( !!email && !!password ) ?  
+    <div>
+    <Toolbar id_user={info.id} name={info.first_name} /> 
+    <LeftScroll info={info} />
+    <LeftMenu info={info} /> 
+    </div> 
+    : null
+  }
 
-            </div>
+  {
+    popout !== null ?  null :
+    <div className='main'>
+    <div className='main-content'>
+    <Route exact path='/' component={MemeList} />
+    <Route exact path='/home' component={MemeList} />
 
-            </div>
-            );
+    <Route exact path='/auth' component={Auth} />
+    <Route exact path='/register' component={Register} />
+    <Route exact path='/account_recovery' component={AccountRecovery} />
+    <Route exact path='/account_approved' component={AccountApproved} />
+    <Route exact path='/options' component={Options} />
+    <Route exact path='/options_left_menu' component={OptionsLeftMenu} />
+    </div>
+
+    <div className='main_user-content'>
+    <Route path='/user/:number' component={User} />
+    </div>
+
+    <div className='main_users-list'>
+    <Route exact path='/friends' component={FriendsList} />
+    <Route exact path='/users_list' component={UsersList} />
+    <Route exact path='/games_list' component={GamesList} />
+    <Route exact path='/chats_list' component={ChatsList} />
+    <Route exact path='/chat/:number' component={ChatMain} />
+    <Route exact path='/game/:number' component={GameMain} />
+    </div>
+
+    
+    </div>
+  }
+
+
+  </div>
+  );
 }
 
 export default App;

@@ -1,26 +1,61 @@
 import React from 'react'
-import { Input, Menu } from 'semantic-ui-react'
+import { Input, Menu, Dropdown } from 'semantic-ui-react'
 import style from './Style.module.css';
+import { logout } from './../../_scripts/ActionsWithUser';
+import { NavLink } from 'react-router-dom';
+import ImageMy from './../ImageMy/ImageMy';
 
-const Toolbar = () => (
-	<div className={ style.header } >
+const Toolbar = ({id_user, name}) => {
 
-	<div  className={ style.content }>
+	let userLink = '/user/' + id_user;
 
-	<div className={ style.logo } >PH</div>
+	const image = (
+		<span>
+		<span className={ style.textName }>{name}</span>
+		<ImageMy propsUrl={id_user} propsType='user' />
+		</span>
+		)
 
-	<Menu.Item className={ style.search } >
-	<Input className={ style.inputSearch } icon='search' placeholder='Поиск...' />
-	</Menu.Item>
+	return (
+		<div className={ style.header } >
+
+		<div  className={ style.content }>
+
+		<NavLink to='/home'>
+		<div className={ style.logo } >PH</div>
+		</NavLink>
 
 
-	<div className={ style.nameBlock }>
-	<span>Na12dd21me</span>
-	<img src='http://i1.ytimg.com/vi/fpRYL4wBFc4/maxresdefault.jpg' alt='...' />
-	</div>
+		<Menu.Item className={ style.search } >
+		<Input className={ style.inputSearch } icon='search' placeholder='Поиск...' />
+		</Menu.Item>
 
-	</div>
-	</div>
-	)
+
+		<div className={ style.nameBlock }>
+		<Dropdown
+		trigger={image}
+		pointing='top left'
+		icon={null}
+		>
+		<Dropdown.Menu>
+		<NavLink to={userLink} className={ style.item_menu }>
+		<Dropdown.Item icon='user' text='Моя страница' />
+		</NavLink>
+		<Dropdown.Divider />
+		<NavLink to='/options' className={ style.item_menu }>
+		<Dropdown.Item icon='cog' text='Настройки' />
+		</NavLink>
+		<Dropdown.Divider />
+		<Dropdown.Item onClick={logout} icon='x' text='Выйти' />
+		</Dropdown.Menu>
+
+		</Dropdown>
+		</div>
+
+		</div>
+		</div>
+		)
+}
+
 
 export default Toolbar

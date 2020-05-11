@@ -1,5 +1,13 @@
+* {
+	user-select: none!important;
+}
+
 body {
 	background-color: #EDEEF0!important;
+}
+
+img {
+	-webkit-user-drag: none;
 }
 
 .main {
@@ -25,3 +33,12 @@ body {
 	margin: 0 auto;
 	width: 900px;
 }
+
+
+.main_users-list {
+	display: flex;
+	justify-content: normal;
+	margin: 0 auto;
+	width: 600px;
+}
+ 

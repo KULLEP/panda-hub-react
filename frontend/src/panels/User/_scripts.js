@@ -9,7 +9,7 @@ export class GetInfoUser {
 		this.id_user = id_user;
 	}
 
-	/* СПИСОК МЕМОВ */
+	/* ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ */
 	getInfo() {
 		return ( $.ajax({
 			method: 'GET',

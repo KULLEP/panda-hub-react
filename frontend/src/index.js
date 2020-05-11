@@ -4,16 +4,33 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
 
+const mainUrl = 'https://panda-hub.ru/';
+
 window.globalInfo = {
 	positionYForBack: 0,
+	chat_is_admin: 0,
 	infoUser: {},
+	infoCurrentUser: {},
+	InfoChat: {},
+	InfoGame: {},
 	arrInfoMemes: [],
+	arrInfoFriends: [],
+	arrInfoUsers: [],
+	arrInfoGames: [],
+	arrInfoUsersSearch: [],
+	arrInfoChatsList: [],
+	arrMessages: [],
 
-
-	php_url: 'https://panda-hub-react.ru/php/',
-	php_url_meme: 'https://panda-hub-react.ru/php/meme/',
-	php_url_user: 'https://panda-hub-react.ru/php/user/',
-	php_url_reg_auth_rec: 'https://panda-hub-react.ru/php/reg_auth_rec/',
+	url_avatar: mainUrl + 'avatars/',
+	url_meme_img:  mainUrl + 'avatars/',
+	php_url:  mainUrl + 'php/',
+	php_url_meme:  mainUrl + 'php/meme/',
+	php_url_user:  mainUrl + 'php/user/',
+	php_url_reg_auth_rec:  mainUrl + 'php/reg_auth_rec/',
+	php_url_options:  mainUrl + 'php/options/',
+	php_url_friends:  mainUrl + 'php/friends/',
+	php_url_chat:  mainUrl + 'php/chat/',
+	php_url_game:  mainUrl + 'php/game/',
 };
 
 

@@ -3,7 +3,7 @@ import $ from "jquery";
 import ReactDOM from 'react-dom';
 import MyComment from './../../components/BlockMeme/MyComment';
 import { Button } from 'semantic-ui-react';
-
+import { HashRouter } from 'react-router-dom';
 
 
 export class GetListComments {
@@ -15,6 +15,9 @@ export class GetListComments {
 		this.block_comment = block_comment;
 	}
 
+	closeComments() {
+		ReactDOM.render(null ,document.getElementById(this.block_comment))
+	}
 
 	/* СПИСОК КОММЕНТАРИЕВ	 */
 	getComments() {
@@ -27,7 +30,9 @@ export class GetListComments {
 			},
 			success: e => { 
 				ReactDOM.render(
+					<HashRouter>
 					<MyComment arr_comm={JSON.parse(e)} block_comment={this.block_comment} />
+					</HashRouter>
 					,document.getElementById(this.block_comment)
 					)}
 			})
@@ -50,7 +55,7 @@ export class AddNewComment {
 	}
 
 	/* СПИСОК КОММЕНТАРИЕВ	 */
-	AddComm() {
+	add() {
 		return ( $.ajax({
 			method: 'GET',
 			url: this.url + 'add_comment.php',
@@ -59,9 +64,9 @@ export class AddNewComment {
 				comment: this.comment,
 				id_user: this.id_user
 			},
-			success: e => { 
-				const getListComments = new GetListComments();
-				getListComments.getComm(this.id_meme, this.block_comment);
+			success: async e => { 
+				console.log(e);
+				await new GetListComments(this.id_meme, this.block_comment).getComments();
 			}
 		})
 		)

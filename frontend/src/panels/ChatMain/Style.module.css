@@ -1,0 +1,37 @@
+.cardContent {
+	padding: 10px!important;
+	width: 550px!important;
+}
+
+.admin_right_menu {
+	position: fixed;
+	top: 74px;
+	left: calc(50% + 300px);
+	height: 275px;
+	width: 130px;
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	border: none;
+	border-radius: .28571429rem;
+	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	transition: box-shadow .1s ease,transform .1s ease;
+	background-color: #fff;
+}
+
+.modal {
+	height: 70%!important;
+	margin: auto!important;
+	overflow: auto!important;
+}
+
+.buttonRightMenu {
+	width: 120px;
+	height: 40px;
+	margin: 0px!important;
+}
+
+.inviteUsers {
+	min-height: 75%;
+}

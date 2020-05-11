@@ -1,0 +1,20 @@
+.cardUser {
+	width: 160px!important;
+	margin: 15px 15px!important;
+}
+
+.cardUser img {
+	object-fit: cover;
+	height: 160px;
+	width: 100%;
+}
+
+.nickname {
+	height: 40px;
+}
+
+
+.buttonFindFriend {
+	left: 430px;
+	position: relative;
+}

@@ -6,11 +6,12 @@ import { AuthClass } from './_scripts.js';
 
 const Auth = () => {
 
+	document.title = 'Авторизация';
+
 	const submit = async (e) => {
 		let email = document.getElementById('email').value;
 		let password = document.getElementById('password').value;
 		await new AuthClass(email, password).validation();
-
 	};
 
 	return (
@@ -54,5 +55,5 @@ const Auth = () => {
 		</Card.Content>
 		</Card>
 		)
-}
-export default Auth;
+	}
+	export default Auth;

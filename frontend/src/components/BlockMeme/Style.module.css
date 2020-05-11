@@ -1,3 +1,7 @@
+* {
+	text-decoration: none!important;
+}
+
 .block {
 	width: 100%!important;
 }
@@ -49,5 +53,19 @@
 }
 
 .userImage {
-	border-radius: 100%;
+	border-radius: 100%!important;
+	display: block; 
+	width: 2.5em; 
+	height: 2.5em; 
+	float: left; 
+	margin-right: 15px;
+}
+
+.userImage:hover {
+	opacity: 0.7;
+}
+
+.textComment {
+	padding: 10px;
+	word-break: break-word;
 }
