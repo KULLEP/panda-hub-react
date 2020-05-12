@@ -66,10 +66,10 @@ const BlockMeme = ({info}) => {
 
 
 		<Card.Content>	 
-		{info.image_text}
+		{info.text}
 		</Card.Content>
 
-		<ImageMy id={meme_block} propsType='meme' propsUrl={info.image} /> 
+		<ImageMy id={meme_block} propsType='meme' propsUrl={info.id} /> 
 		
 		<Card.Content className={style.iconBlockContent} >
 

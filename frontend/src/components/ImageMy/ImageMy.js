@@ -34,7 +34,7 @@ const ImageMy = ({propsUrl, propsType, id, className}) => {
 		ImgErrAction = imgErrUser;
 	} else if (propsType === 'meme') {
 		classNameStyle = style.imgMeme;
-		img_url = propsUrl;
+		img_url = window.globalInfo.url_meme_img + propsUrl + '.jpg';
 		ImgErrAction = imgErr;
 	} else if(propsType === 'chat') {
 		img_url = propsUrl;

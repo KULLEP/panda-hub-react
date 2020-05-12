@@ -28,7 +28,7 @@ export class goToUserAccount {
 export const goToMainPage = () => {
 	ReactDOM.render(
 		<HashRouter>
-		<Redirect from='/' to='/home' />
+		<Redirect from='/' to='/news' />
 		<App />
 		</HashRouter>
 		,document.getElementById('root')

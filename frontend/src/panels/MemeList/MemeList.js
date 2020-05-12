@@ -3,6 +3,7 @@ import BlockMeme from'./../../components/BlockMeme/BlockMeme';
 import MyRedirect from './../../components/MyRedirect';
 import { GetListMemes } from './_scripts';
 import Loader from './../../components/Loader/Loader';
+import CardAddMeme from './../../components/CardAddMeme/CardAddMeme';
 
 const MemeList = () => {
 
@@ -24,6 +25,7 @@ const MemeList = () => {
 
 	return (
 		<div className='w-100'>
+		<CardAddMeme />
 		<MyRedirect/>
 		{
 			popout !== null ? popout :

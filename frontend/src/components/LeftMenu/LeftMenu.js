@@ -42,7 +42,7 @@ export default class LeftMenu extends Component {
 
 				{
 					menuInfo.news === 1 ?
-					<NavLink to='/home'>
+					<NavLink to='/news'>
 					<Menu.Item
 					name='Новости'
 					active={activeItem === 'Новости'}

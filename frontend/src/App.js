@@ -66,7 +66,7 @@ return (
     <div className='main'>
     <div className='main-content'>
     <Route exact path='/' component={MemeList} />
-    <Route exact path='/home' component={MemeList} />
+    <Route exact path='/news' component={MemeList} />
 
     <Route exact path='/auth' component={Auth} />
     <Route exact path='/register' component={Register} />

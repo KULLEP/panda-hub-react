@@ -21,7 +21,7 @@ const Toolbar = ({id_user, name}) => {
 
 		<div  className={ style.content }>
 
-		<NavLink to='/home'>
+		<NavLink to='/news'>
 		<div className={ style.logo } >PH</div>
 		</NavLink>
 
