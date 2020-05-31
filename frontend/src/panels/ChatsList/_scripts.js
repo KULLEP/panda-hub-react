@@ -25,7 +25,6 @@ export class GetListChats {
 
 
 
-
 export class CreateNewChats {
 
 	url = window.globalInfo.php_url_chat;

@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
 
 const mainUrl = 'https://panda-hub-react.ru/';
+// const mainUrl = 'https://panda-hub.ru/';
 
 window.globalInfo = {
 	positionYForBack: 0,
@@ -21,8 +22,9 @@ window.globalInfo = {
 	arrInfoChatsList: [],
 	arrMessages: [],
 
-	url_avatar: mainUrl + 'avatars/',
-	url_meme_img:  mainUrl + 'memes/',
+	url_avatar: mainUrl + 'content/avatars/',
+	url_meme_img:  mainUrl + 'content/memes/',
+	url_meme_content:  mainUrl + 'content/memes/',
 	php_url:  mainUrl + 'php/',
 	php_url_meme:  mainUrl + 'php/meme/',
 	php_url_user:  mainUrl + 'php/user/',

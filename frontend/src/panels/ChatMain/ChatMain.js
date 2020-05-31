@@ -6,8 +6,7 @@ import Loader from './../../components/Loader/Loader';
 import MessageBlock from './../../components/MessageBlock/MessageBlock';
 import { goToMainPage } from './../../_scripts/RedirectOnPage';
 import { Comment, Header, Card, Form, Button } from 'semantic-ui-react';
-import { HashRouter, Redirect } from 'react-router-dom';
-import App from './../../App';
+import { HashRouter } from 'react-router-dom';
 import AdminRightMenu from './AdminRightMenu';
 import style from './Style.module.css';
 
@@ -36,14 +35,13 @@ const ChatMain = ({match}) => {
 			}
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 
 	const addMessage = async () => {
 		let message = document.getElementById('form_message').value;
 		let investment = null;
-		let link = '/chat/' + id_chat;
 		if (message.length > 1) {
 			await new AddMessages(id_chat, id_user, message, investment).add();
 			await new GetMessages(id_chat).get();

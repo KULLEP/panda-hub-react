@@ -5,3 +5,18 @@
 	flex-wrap: wrap;
 }
 
+
+.header {
+	display: none!important;
+}
+
+@media screen and (max-width: 768px) {
+	.sideContent {
+		display: none;
+	}
+
+	.header, .mainContent {
+		width: 100%;
+	}
+
+}

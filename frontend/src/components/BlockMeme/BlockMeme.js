@@ -4,10 +4,10 @@ import { Card, Button } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { GetListComments, AddOrDelLike } from './_scripts';
 import ImageMy from './../ImageMy/ImageMy';
+import MemeContent from './../MemeContent/MemeContent';
 
 
 const BlockMeme = ({info}) => {
-
 
 	let likes = info.likes;
 	let repost = info.repost;
@@ -15,8 +15,6 @@ const BlockMeme = ({info}) => {
 	likes = ( likes === '' ) ? 0 : likes;
 	repost = ( repost === '' ) ? 0 : repost;
 
-
-	let meme_block = 'meme_' + info.id;
 	let like_block = 'like_' + info.id;
 	let comments_block = 'comment_' + info.id;
 	let is_like = localStorage.getItem(like_block);
@@ -69,7 +67,7 @@ const BlockMeme = ({info}) => {
 		{info.text}
 		</Card.Content>
 
-		<ImageMy id={meme_block} propsType='meme' propsUrl={info.id} /> 
+		<MemeContent content={info.id} contentType={info.content_type} /> 
 		
 		<Card.Content className={style.iconBlockContent} >
 
@@ -77,7 +75,7 @@ const BlockMeme = ({info}) => {
 		<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
 		<Button
 		color='red'
-		content='Нравится'
+		content={<span>Нравится</span>}
 		icon='heart outline'
 		label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
 		/>
@@ -86,7 +84,7 @@ const BlockMeme = ({info}) => {
 		<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
 		<Button
 		color='red'
-		content='Нравится'
+		content={<span>Нравится</span>}
 		icon='heart'
 		label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
 		/>
@@ -96,7 +94,7 @@ const BlockMeme = ({info}) => {
 	<div onClick={get_comments} className={ style.iconText }>
 	<Button
 	color='black'
-	content='Комментарии'
+	content={<span>Комментарии</span>}
 	icon='comments'
 	label={{ basic: true, color: 'black', pointing: 'left', content: '...' }}
 	/>
@@ -107,7 +105,7 @@ const BlockMeme = ({info}) => {
 	<Button
 	basic
 	color='blue'
-	content='Поделиться'
+	content={<span>Поделиться</span>}
 	icon='fork'
 	label={{
 		as: 'a',

@@ -16,7 +16,7 @@ const KickUserFromChatModal = ({id_chat}) => {
 			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 	return (

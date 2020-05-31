@@ -22,44 +22,46 @@ export class AuthClass {
 		}
 	}
 
-
 	/* АВТОРИЗАЦИЯ */
 	auth = () => {
-	return ( $.ajax({
-		method: 'GET',
-		url: this.url + 'auth.php',
-		data: {
-			email: this.email,
-			password: this.password
-		},
-		success: e => { 
-			console.log(e);
-			if(e === '0'){
-				alert('Подтвердите аккаунт');
-				localStorage.setItem('email_access', this.email);
-				ReactDOM.render(
-					<HashRouter>
-					<Redirect from='/' to='/account_approved'/>
-					<App />
-					</HashRouter>
-					,document.getElementById('root')
-					);
-			}else if(e === '1') {
-				localStorage.setItem('email', this.email);
-				localStorage.setItem('password', this.password);
-				ReactDOM.render(
-					<HashRouter>
-					<Redirect from='/' to='/home'/>
-					<App />
-					</HashRouter>
-					,document.getElementById('root')
-					);
-			} else {
-				alert('Почта или пароль неправильные');
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'auth.php',
+			data: {
+				email: this.email,
+				password: this.password
+			},
+			success: e => { 
+				console.log(e);
+				if(e === '0'){
+					alert('Подтвердите аккаунт');
+					localStorage.setItem('email_access', this.email);
+					ReactDOM.render(
+						<HashRouter>
+						<Redirect from='/' to='/account_approved'/>
+						<App />
+						</HashRouter>
+						,document.getElementById('root')
+						);
+				}else if(e === '1') {
+					localStorage.setItem('email', this.email);
+					localStorage.setItem('password', this.password);
+					ReactDOM.render(
+						<HashRouter>
+						<Redirect from='/' to='/news'/>
+						<App />
+						</HashRouter>
+						,document.getElementById('root')
+						);
+				} else {
+					alert('Почта или пароль введены неправильно');
+				}
 			}
-		}
-	})
-	)
-};
+		})
+		)
+	};
 
 }
+
+
+

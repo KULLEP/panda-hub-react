@@ -1,11 +1,10 @@
 import $ from "jquery";
 
-
 export class GetListMemes {
 
 	url = window.globalInfo.php_url_meme;
 
-	/* СПИСОК МЕМОВ */
+	/* СПИСОК ПОСТОВ */
 	getMemes() {
 		return ( $.ajax({
 			method: 'GET',

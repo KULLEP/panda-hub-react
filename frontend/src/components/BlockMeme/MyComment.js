@@ -5,12 +5,11 @@ import { AddNewComment } from './_scripts';
 import { NavLink } from 'react-router-dom';
 import ImageMy from './../ImageMy/ImageMy';
 
-const MyComment = ({arr_comm, block_comment}) => {
+const MyComment = ({id_meme, arr_comm, block_comment}) => {
 
-	let comment_block = 'text_comm' + arr_comm.id;
+	let comment_block = 'text_comm' + id_meme;
 
 	const submit_comment = async () => {
-		let id_meme = arr_comm[0].id_memes;
 		let comment = document.getElementById(comment_block).value;
 		let id_user = window.globalInfo.infoCurrentUser.id;
 		console.log(id_meme+' '+comment+' '+id_user);
@@ -49,7 +48,7 @@ const MyComment = ({arr_comm, block_comment}) => {
 		}
 		<Form reply>
 		<Form.TextArea id={comment_block} />
-		<Button onClick={submit_comment} content='Add Reply' labelPosition='left' icon='edit' primary />
+		<Button onClick={submit_comment} content='Отправить' labelPosition='left' icon='edit' primary />
 		</Form>
 		</Comment.Group>
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import MyRedirect from './../../components/MyRedirect';
 import { GetInfoUser } from './_scripts';
 import UserBlock from './UserBlock';
@@ -12,7 +11,6 @@ const User = ({match}) => {
 
 	const id = match.params.number;
 	const user_info_block = 'user_content_' + id;
-	console.log(user_info_block);
 
 
 	useEffect(() => {
@@ -20,11 +18,12 @@ const User = ({match}) => {
 			await new GetInfoUser(id).getInfo();
 			if(!!window.globalInfo.infoUser) {
 				document.title = window.globalInfo.infoUser.first_name + ' '+ window.globalInfo.infoUser.last_name;
-				setPopout(null);
+				// setPopout(null);
 			} else goToMainPage();
+			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 
@@ -40,3 +39,7 @@ const User = ({match}) => {
 		)
 }
 export default User;
+
+
+
+

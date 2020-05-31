@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 import style from './Style.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
 
 export default class LeftMenu extends Component {
 	state = { activeItem: 'home' };
@@ -21,6 +21,8 @@ export default class LeftMenu extends Component {
 		}
 
 		return (
+			<div>
+
 			<div className={ style.block } >
 			{
 				menuInfo !== null ?
@@ -39,7 +41,6 @@ export default class LeftMenu extends Component {
 					: null
 				}
 
-
 				{
 					menuInfo.news === 1 ?
 					<NavLink to='/news'>
@@ -51,8 +52,6 @@ export default class LeftMenu extends Component {
 					</NavLink>
 					: null
 				}
-
-
 
 				{
 					menuInfo.messages === 1 ?
@@ -66,8 +65,6 @@ export default class LeftMenu extends Component {
 					: null
 				}
 
-
-
 				{
 					menuInfo.friends === 1 ?
 					<NavLink to='/friends'>
@@ -80,7 +77,6 @@ export default class LeftMenu extends Component {
 					: null
 				}
 
-
 				{
 					menuInfo.groups === 1 ?
 					<NavLink to='/groups'>
@@ -92,8 +88,6 @@ export default class LeftMenu extends Component {
 					</NavLink>
 					: null
 				}
-
-
 
 				{
 					menuInfo.games === 1 ?
@@ -110,6 +104,31 @@ export default class LeftMenu extends Component {
 				</Menu> : null
 
 			}
+			</div>
+
+			<nav className={ style.blockMobile } pointing secondary vertical>	
+
+			<NavLink to='/news'>
+			<Icon name='newspaper outline' size='big' />
+			</NavLink>
+
+			<NavLink to='/groups'>
+			<Icon name='usb' size='big' />
+			</NavLink>
+
+			<NavLink to='/chats_list'>
+			<Icon name='skyatlas' size='big' />
+			</NavLink>
+
+			<NavLink to='/friends'>
+			<Icon name='group' size='big' />
+			</NavLink>
+
+			<NavLink to={userLink}>
+			<Icon name='user outline' size='big' />
+			</NavLink>
+
+			</nav>
 			</div>
 			)
 	}

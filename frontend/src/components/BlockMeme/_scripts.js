@@ -31,7 +31,7 @@ export class GetListComments {
 			success: e => { 
 				ReactDOM.render(
 					<HashRouter>
-					<MyComment arr_comm={JSON.parse(e)} block_comment={this.block_comment} />
+					<MyComment id_meme={this.id_meme} arr_comm={JSON.parse(e)} block_comment={this.block_comment} />
 					</HashRouter>
 					,document.getElementById(this.block_comment)
 					)}
@@ -54,7 +54,7 @@ export class AddNewComment {
 		this.block_comment = block_comment;
 	}
 
-	/* СПИСОК КОММЕНТАРИЕВ	 */
+	/* СОЗДАТЬ НОВЫЙ КОММЕНТАРИЙ */
 	add() {
 		return ( $.ajax({
 			method: 'GET',
@@ -101,7 +101,7 @@ export class AddOrDelLike {
 					ReactDOM.render(
 						<Button
 						color='red'
-						content='Нравится'
+						content={<span>Нравится</span>}
 						icon='heart outline'
 						label={{ basic: true, color: 'red', pointing: 'left', content: e }}
 						/>
@@ -112,7 +112,7 @@ export class AddOrDelLike {
 					ReactDOM.render(
 						<Button
 						color='red'
-						content='Нравится'
+						content={<span>Нравится</span>}
 						icon='heart'
 						label={{ basic: true, color: 'red', pointing: 'left', content: e }}
 						/>

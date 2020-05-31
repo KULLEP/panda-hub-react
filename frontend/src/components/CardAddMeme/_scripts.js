@@ -1,16 +1,13 @@
-import React from 'react';
 import $ from "jquery";
-import ReactDOM from 'react-dom';
-import { goToOptionsPage } from './../../_scripts/RedirectOnPage';
-
 
 export class PostMeme {
 
 	url = window.globalInfo.php_url_meme;
 	
-	constructor(id_user, text) { 
+	constructor(id_user, text, contentType) { 
 		this.id_user = id_user;
 		this.text = text;
+		this.contentType = contentType;
 	}
 
 	/* СОЗДАТЬ МЕМ */
@@ -19,7 +16,8 @@ export class PostMeme {
 		url: this.url + 'post_meme.php',
 		data: {
 			id_user: this.id_user,
-			text: this.text
+			text: this.text,
+			contentType: this.contentType
 		},
 		success: e => e
 	})
@@ -30,17 +28,17 @@ export class PostMeme {
 export class SaveAndRenameImage {
 
 	url = window.globalInfo.php_url_meme;
-
 	
-	constructor(id_meme, image) { 
+	constructor(id_meme, content, contentType) { 
 		this.id_meme = id_meme;
-		this.image = image;
+		this.content = content;
+		this.contentType = contentType;
 	}
 
-	/* СОХРАНИТЬ И ПЕРЕИМЕНОВАТЬ ФОТО */
+	/* СОХРАНИТЬ И ПЕРЕИМЕНОВАТЬ КОНТЕНТ МЕМА */
 	action = () => {
 		var form_data = new FormData();
-		form_data.append('file', this.image, this.id_meme + '.jpg');
+		form_data.append('file', this.content, this.id_meme + this.contentType);
 		return ( $.ajax({
 			url: this.url + 'save_image.php',
 			dataType: 'text',

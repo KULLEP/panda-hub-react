@@ -3,7 +3,6 @@ import MyRedirect from './../../components/MyRedirect';
 import { GetListGames } from './_scripts';
 import Loader from './../../components/Loader/Loader';
 import GameCard from './../../components/GameCard/GameCard';
-import style from './Style.module.css';
 
 
 const GamesList = () => {

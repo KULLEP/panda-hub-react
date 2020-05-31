@@ -14,8 +14,10 @@
     "react-scripts": "3.4.1",
     "react-shadow-scroll": "^1.0.1",
     "react-spinners": "^0.8.1",
+    "react-video-js-player": "^1.1.1",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",

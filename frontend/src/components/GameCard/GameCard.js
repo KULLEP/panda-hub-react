@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Style.module.css';
 import { Link } from 'react-router-dom';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import ImageMy from './../ImageMy/ImageMy';
 
 const GameCard = ({info}) => {

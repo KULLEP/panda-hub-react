@@ -10,19 +10,25 @@ const CardAddMeme = () => {
 
 	const info = window.globalInfo.infoCurrentUser;
 	const id_user = window.globalInfo.infoCurrentUser.id;
-	var image;
+	var content;
+	var contentType = '.jpg';
 
 
 	const setImage = () => {
-		image = document.getElementById('image-meme-upload').files[0];
+		content = document.getElementById('content-meme-upload').files[0];
+		if(content.type === 'video/mp4') {
+			contentType = '.mp4';
+		} else if (content.type === 'audio/mpeg') {
+			contentType = '.mp3';
+		}
 	};
 
 
 	const postMeme = async () => {
 		let text_meme = document.getElementById('input_text_meme').value;
-		let id_meme = await new PostMeme(id_user, text_meme).post();
-		if(image !== undefined) {
-			await new SaveAndRenameImage(id_meme, image).action();
+		let id_meme = await new PostMeme(id_user, text_meme, contentType).post();
+		if(content !== undefined) {
+			await new SaveAndRenameImage(id_meme, content, contentType).action();
 		}
 		goToMainPage();
 	};
@@ -38,9 +44,9 @@ const CardAddMeme = () => {
 		<input id='input_text_meme' type='text' placeholder='Что нового ?' className="form-control" />
 
 
-		<label for="image-meme-upload" className="ml-3" >
-		<Icon name='photo' size='big' className={ style.imageInputMeme } />
-		<input type="file" onChange={setImage} className='d-none' id="image-meme-upload" />
+		<label for="content-meme-upload" className="ml-3" >
+		<Icon name='file outline' size='big' className={ style.imageInputMeme } />
+		<input type="file" onChange={setImage} className='d-none' id="content-meme-upload" />
 		</label>
 
 

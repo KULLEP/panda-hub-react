@@ -2,7 +2,7 @@ import React from 'react';
 import $ from "jquery";
 import ReactDOM from 'react-dom';
 import App from './../App';
-import { HashRouter, Redirect } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 export class GetInfoCurrentUser {
 

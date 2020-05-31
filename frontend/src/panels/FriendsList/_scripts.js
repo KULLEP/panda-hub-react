@@ -9,7 +9,7 @@ export class GetListFriends {
 		this.id_user = id_user;
 	}
 
-	/* СПИСОК МЕМОВ */
+	/* СПИСОК ДРУЗЕЙ */
 	get() {
 		return ( $.ajax({
 			method: 'GET',

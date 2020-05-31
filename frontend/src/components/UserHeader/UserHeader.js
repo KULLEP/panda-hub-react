@@ -4,9 +4,41 @@ import style from './Style.module.css';
 import { CountryList } from './../CountryList';
 import ImageMy from './../ImageMy/ImageMy';
 import { SaveImage } from './../../panels/Options/_scripts.js';
-import { goToUserAccount } from './../../_scripts/RedirectOnPage';
+import { GoToUserAccount } from './../../_scripts/RedirectOnPage';
+import { PostRequsetInFriend } from './_scripts';
+
 
 const UserHeader = ({info}) => {
+
+	var this_user_is_friend = false;
+	var this_user_in_request_friend = false;
+	var add_user_in_friend = false;
+	var id_current_user = window.globalInfo.infoCurrentUser.id;
+	var arr_friends_requuest = window.globalInfo.infoUser.friends_requests;
+
+	/* ПАРСИНГ ДРУЗЕЙ */
+	const is_friend = JSON.parse(window.globalInfo.infoCurrentUser.friends)?.find(e => +e === +info.id);
+	this_user_is_friend = is_friend;
+	this_user_is_friend = (this_user_is_friend > 0) ? true : false;
+
+
+	/* ПАРСИНГ ЗАЯВКИ В ДРУЗЬЯ */
+	if (!this_user_is_friend) {
+		if(arr_friends_requuest === '') { arr_friends_requuest = '[-1]'; }
+		const is_request_friend = JSON.parse(arr_friends_requuest)?.find(e => +e === +id_current_user);
+		this_user_in_request_friend = is_request_friend;
+		this_user_in_request_friend = (this_user_in_request_friend > 0) ? true : false;
+	}
+
+	/* ЕСЛИ НЕТУ В ДРУЗЬЯХ И НЕТУ В ЗАПРОСАХ В ДРУЗЬЯ */
+	if (!this_user_is_friend && !this_user_in_request_friend && +info.id !== +window.globalInfo.infoCurrentUser.id) {
+		add_user_in_friend = true;
+	}
+
+	const postRequsetInFriend = async () => {
+		await new PostRequsetInFriend(info.id).post();
+	}
+
 
 
 	/* ФОНОВОЕ ИЗОБРАЖЕНИЕ */
@@ -16,7 +48,6 @@ const UserHeader = ({info}) => {
 		if (!!bg_image) {
 			document.querySelector('.'+style.header).style.backgroundImage = `url("${bg_image}")`;
 		}
-		
 	}, 0);
 
 
@@ -32,7 +63,7 @@ const UserHeader = ({info}) => {
 	const loadImage = async () => {
 		let image = document.getElementById('image-upload').files[0];
 		await new SaveImage(image).save();
-		await new goToUserAccount(info.id).go();
+		await new GoToUserAccount(info.id).go();
 	};
 
 
@@ -59,15 +90,30 @@ const UserHeader = ({info}) => {
 		<div className={ style.right } >
 		<p className={ style.network }>{network}</p>
 		<p className={ style.rank } >Рейтинг {info.rank}</p>
-		<Dropdown text='Ещё' className={ style.add } >
-		<Dropdown.Menu>
-		<Dropdown.Item icon='lock' text='Добавить в ЧС' />
-		<Dropdown.Item icon='balance scale' text='Пожаловаться' />
-		<Dropdown.Item icon='user delete' text='Удалить из друзей' />
-		<Dropdown.Item icon='sign-in' text='Пригласить в группу' />
-		</Dropdown.Menu>
-		</Dropdown>
+		{
+			this_user_is_friend !== false ?
+			<Dropdown text='Ещё' className={ style.add } >
+			<Dropdown.Menu>
+			<Dropdown.Item icon='lock' text='Добавить в ЧС' />
+			<Dropdown.Item icon='balance scale' text='Пожаловаться' />
+			<Dropdown.Item icon='user delete' text='Удалить из друзей' />
+			<Dropdown.Item icon='sign-in' text='Пригласить в группу' />
+			</Dropdown.Menu>
+			</Dropdown> 
+			: null
+		}
+
+		<div id='text_post_user_in_friend'>
+		{
+			this_user_in_request_friend !== false ? <p className={ style.friend_request }>Заявка в друзья отправлена</p> : null
+		}
 		</div>
+
+		{
+			add_user_in_friend !== false ? <Icon title='Добавить в друзья' onClick={postRequsetInFriend} name='add user' size='big' className={ style.btn_add_in_friend } /> : null
+		}
+		</div>
+
 
 		</div>
 		)

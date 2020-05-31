@@ -53,6 +53,10 @@
 	overflow: hidden;
 }
 
+.friend_request {
+	float: right;
+	width: 200px!important;
+}
 
 .right {
 	padding-top: 5px;
@@ -91,5 +95,13 @@
 
 
 .image_upload:hover {
+	opacity: 0.7;
+}
+
+.btn_add_in_friend {
+	margin-top: -10px!important;
+}
+
+.btn_add_in_friend:hover {
 	opacity: 0.7;
 }

@@ -30,8 +30,6 @@
 	float: right; 
 }
 
-
-
 .iconBlockContent {
 	display: flex; 
 	justify-content: space-around;
@@ -69,3 +67,29 @@
 	padding: 10px;
 	word-break: break-word;
 }
+
+
+
+
+
+@media screen and (max-width: 980px) {
+
+
+	.iconBlockContent {
+		padding: 10px 0!important;
+	}
+
+	.iconText {		 
+		height: 30px;
+	}
+
+	.iconText button {
+		width: 75px!important;
+	}
+
+	.iconText button span {
+		display: none!important;
+	}
+
+}
+

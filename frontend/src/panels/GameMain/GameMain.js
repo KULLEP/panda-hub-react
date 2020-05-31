@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MyRedirect from './../../components/MyRedirect';
 import Loader from './../../components/Loader/Loader';
-import style from './Style.module.css';
 import { GetInfoGame } from './_scripts';
 
 const GameMain = ({match}) => {
@@ -21,7 +20,7 @@ const GameMain = ({match}) => {
 			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 	return (
@@ -29,7 +28,7 @@ const GameMain = ({match}) => {
 		<MyRedirect/>
 		{
 			popout !== null ? popout : 
-			<iframe src={info.url_app} width={info.options.width} height={info.options.height} >
+			<iframe title='Game' src={info.url_app} width={info.options.width} height={info.options.height} >
 			Ваш браузер не поддерживает плавающие фреймы!
 			</iframe>
 		}

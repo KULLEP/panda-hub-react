@@ -1,9 +1,12 @@
-import React from 'react'
-import { Input, Menu, Dropdown } from 'semantic-ui-react'
+import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { HashRouter } from 'react-router-dom';
+import { Input, Menu, Dropdown } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { logout } from './../../_scripts/ActionsWithUser';
 import { NavLink } from 'react-router-dom';
 import ImageMy from './../ImageMy/ImageMy';
+// import { GetListUsersSearch } from './../../_scripts/GetListUsersSearch';
 
 const Toolbar = ({id_user, name}) => {
 
@@ -16,6 +19,43 @@ const Toolbar = ({id_user, name}) => {
 		</span>
 		)
 
+
+
+	const getListUsersSearch = async (e) => {
+		// let name = e.target.value;
+		// let block = '.' + style.mainBlock;
+		// console.log(block);
+		// if(name.length > 1 && name.length < 30) {
+		// 	await new GetListUsersSearch(name, block).get();
+		// 	let arr_users_search = window.globalInfo.arrInfoUsersSearch;
+		// 	ReactDOM.render(
+		// 		<HashRouter>
+		// 		{
+		// 			arr_users_search.map(e => {
+		// 				id_last_user = e.id; 
+		// 				return (
+		// 					<UserCard info={e}/>
+		// 					)}
+		// 				)
+		// 		}
+		// 		</HashRouter>,document.querySelector(block));
+		// } else {
+		// 	await new GetListUsers(id_last_user).get();
+		// 	ReactDOM.render(
+		// 		<HashRouter>
+		// 		{
+		// 			arr_users.map(e => {
+		// 				id_last_user = e.id; 
+		// 				return (
+		// 					<UserCard info={e}/>
+		// 					)}
+		// 				)
+		// 		}
+		// 		</HashRouter>,document.querySelector(block));
+		// }
+	};
+
+
 	return (
 		<div className={ style.header } >
 
@@ -27,7 +67,7 @@ const Toolbar = ({id_user, name}) => {
 
 
 		<Menu.Item className={ style.search } >
-		<Input className={ style.inputSearch } icon='search' placeholder='Поиск...' />
+		<Input className={ style.inputSearch } onChange={getListUsersSearch} icon='search' placeholder='Поиск...' />
 		</Menu.Item>
 
 

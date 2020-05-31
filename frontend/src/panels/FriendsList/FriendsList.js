@@ -8,22 +8,18 @@ import { Link } from 'react-router-dom';
 import ImageMy from './../../components/ImageMy/ImageMy';
 
 const FriendsList = () => {
-
+	
 	document.title = 'Друзья';
-
 	const [popout, setPopout] = useState(<Loader/>);
 	var arr_friends = window.globalInfo.arrInfoFriends;
-
 	let id = window.globalInfo.infoCurrentUser.id;
-
 	useEffect(() => {
 		async function fetchRequest() {
 			await new GetListFriends(id).get();
 			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
-
+	});
 
 	return (
 		<div>
@@ -37,8 +33,6 @@ const FriendsList = () => {
 		{
 			popout !== null ? popout :
 			arr_friends.map(e => {	
-				let img_u = 'https://panda-hub.ru/avatars/' + e.id + '.png';
-				console.log(e);
 				return (
 					<Link to={`/user/${e.id}`} className={ style.cardUser } >
 					<Card>
@@ -62,3 +56,5 @@ const FriendsList = () => {
 		)
 }
 export default FriendsList;
+
+

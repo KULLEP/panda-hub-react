@@ -8,11 +8,11 @@ import UserMainContent from './../../components/UserMainContent/UserMainContent'
 const UserBlock = ({info}) => {
 
 	return (
-		<div className={ style.mainBlock }>
-		<UserHeader info={info} />
-		<UserGroups info={info} />
-		<UserMainContent info={info} />
-		<UserFriends info={info} />
+		<div className={ style.mainBlock } >
+		<UserHeader className={ style.header } info={info} />
+		<UserGroups className={ style.sideContent } info={info} />
+		<UserMainContent className={ style.mainContent } info={info} />
+		<UserFriends className={ style.sideContent } info={info} />
 		</div>
 		)
 }

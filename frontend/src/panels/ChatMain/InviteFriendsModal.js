@@ -15,7 +15,7 @@ const InviteFriendsModal = ({id_user}) => {
 			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 	return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Card, Button, Form } from 'semantic-ui-react';
-import { EditOptions, EditOptionsLeftMenu, SaveImage } from './_scripts.js';
+import { EditOptions, SaveImage } from './_scripts.js';
 import { GetInfoCurrentUser } from './../../_scripts/ActionsWithUser';
 import Loader from './../../components/Loader/Loader';
 
@@ -22,7 +22,7 @@ const Options = () => {
 			setPopout(null);      
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 

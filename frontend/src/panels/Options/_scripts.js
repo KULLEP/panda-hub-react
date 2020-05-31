@@ -1,6 +1,4 @@
-import React from 'react';
 import $ from "jquery";
-import ReactDOM from 'react-dom';
 import { goToOptionsPage } from './../../_scripts/RedirectOnPage';
 
 export class EditOptions {

@@ -5,7 +5,7 @@ import { HashRouter, Redirect } from 'react-router-dom';
 
 
 /* ПЕРЕЙТИ В АККАУНТ */
-export class goToUserAccount {
+export class GoToUserAccount {
 
 	constructor(id) {
 		this.id = id;

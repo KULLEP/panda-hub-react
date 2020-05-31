@@ -1,3 +1,7 @@
+.blockMobile {
+	display: none!important;
+}
+
 .block {
 	position: fixed;
 	top: 60px;
@@ -20,4 +24,35 @@
 .nav a:hover {
 	border-radius: 115px!important; 
 	background-color: #6993C4!important;  
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+	.block {
+		display: none;
+	}
+
+
+
+	.blockMobile {
+		display: flex!important;
+		z-index: 99999;
+		top: 0px;
+		height: 48px;
+		width: 100%;
+		box-shadow: 0 4px 4px 0 #0000000d,0 0 4px 0 #0000000d;
+		background-color: #F9F9F9;
+	}
+
+
+	.blockMobile a {
+		text-align: center;
+		padding: 10px 0;
+		width: 20%;
+		padding: 10px 0;
+	}
+
+
 }

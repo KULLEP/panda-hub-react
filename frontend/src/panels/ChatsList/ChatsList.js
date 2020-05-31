@@ -9,22 +9,18 @@ import style from './Style.module.css';
 
 const ChatsList = () => {
 
-	document.title = 'Списко чатов';
+	document.title = 'Списко конференций';
 
 	const [popout, setPopout] = useState(<Loader/>);
 	var arr_chats_list = window.globalInfo.arrInfoChatsList;
 	
-
 	useEffect(() => {
 		async function fetchRequest() {
 			await new GetListChats().get();
 			setPopout(null);
-			console.log(window.globalInfo.arrInfoChatsList);
 		}
 		fetchRequest();
 	}, []);
-
-
 
 	return (
 		<div className='w-100'>
@@ -56,4 +52,5 @@ const ChatsList = () => {
 }
 
 export default ChatsList;
+
 

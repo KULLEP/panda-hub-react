@@ -15,7 +15,6 @@ const UsersList = () => {
 
 	const [popout, setPopout] = useState(<Loader/>);
 	var arr_users = window.globalInfo.arrInfoUsers;
-	var id = window.globalInfo.infoCurrentUser.id;
 	var id_last_user = 0;
 
 
@@ -25,7 +24,7 @@ const UsersList = () => {
 			setPopout(null);
 		}
 		fetchRequest();
-	}, []);
+	});
 
 
 	const getListUsersSearch = async (e) => {
