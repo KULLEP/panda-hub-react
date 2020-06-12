@@ -8,6 +8,7 @@ import MyRedirect from './components/MyRedirect';
 
 import MemeList from './panels/MemeList/MemeList';
 import FriendsList from './panels/FriendsList/FriendsList';
+import FriendsRequestsList from './panels/FriendsList/FriendsRequestsList';
 import UsersList from './panels/UsersList/UsersList';
 import GamesList from './panels/GamesList/GamesList';
 import User from './panels/User/User';
@@ -19,6 +20,7 @@ import GameMain from './panels/GameMain/GameMain';
 import ChatsList from './panels/ChatsList/ChatsList';
 import Options from './panels/Options/Options';
 import ChatMain from './panels/ChatMain/ChatMain';
+import Shop from './panels/Shop/Shop';
 import OptionsLeftMenu from './panels/Options/OptionsLeftMenu';
 import { GetInfoCurrentUser } from './_scripts/ActionsWithUser';
 import 'semantic-ui-css/semantic.min.css';
@@ -37,6 +39,11 @@ const App = () => {
     async function fetchRequest() {
       if(!!email && !!password) {
        await new GetInfoCurrentUser(email, password).getInfo();
+
+       /* КОЛ-ВО ЗАПРОСОВ В ДРУЗЬЯ */
+       let num_req_fr = window.globalInfo?.infoCurrentUser?.friends_requests;
+       num_req_fr = (num_req_fr === '' || num_req_fr === '[]' || num_req_fr === null || num_req_fr === undefined) ? '' : JSON.parse(num_req_fr).length; 
+       window.globalInfo.countFriendsRequest = num_req_fr;
      }     
      setPopout(null);        
    }
@@ -44,58 +51,77 @@ const App = () => {
  });
 
 
-///       <Route path='/chat/:number' component={Chat} />
+  useEffect(() => {
+    const timer = setInterval(() => {
+     async function fetchRequest() {
+      if(!!email && !!password) {
+       await new GetInfoCurrentUser(email, password).getInfo();
+       /* КОЛ-ВО ЗАПРОСОВ В ДРУЗЬЯ */
+       let num_req_fr = window.globalInfo?.infoCurrentUser?.friends_requests;
+       num_req_fr = (num_req_fr === '' || num_req_fr === '[]' || num_req_fr === null || num_req_fr === undefined) ? '' : JSON.parse(num_req_fr).length; 
+       window.globalInfo.countFriendsRequest = num_req_fr;
+     }           
+   }
+   fetchRequest();
+ }, 5000);
 
-return (
-  <div>
+    return () => clearInterval(timer);
+  });
 
-  <MyRedirect/>
 
-  {
-    ( !!email && !!password ) ?  
+
+  return (
     <div>
-    <Toolbar id_user={info.id} name={info.first_name} /> 
-    <LeftScroll info={info} />
-    <LeftMenu info={info} /> 
-    </div> 
-    : null
-  }
 
-  {
-    popout !== null ?  null :
-    <div className='main'>
-    <div className='main-content'>
-    <Route exact path='/' component={MemeList} />
-    <Route exact path='/news' component={MemeList} />
+    <MyRedirect/>
 
-    <Route exact path='/auth' component={Auth} />
-    <Route exact path='/register' component={Register} />
-    <Route exact path='/account_recovery' component={AccountRecovery} />
-    <Route exact path='/account_approved' component={AccountApproved} />
-    <Route exact path='/options' component={Options} />
-    <Route exact path='/options_left_menu' component={OptionsLeftMenu} />
+    {
+      ( !!email && !!password ) ?  
+      <div>
+      <Toolbar id_user={info.id} name={info.first_name} /> 
+      <LeftScroll info={info} />
+      <LeftMenu info={info} /> 
+      </div> 
+      : null
+    }
+
+    {
+      popout !== null ?  null :
+      <div className='main'>
+      <div className='main-content'>
+      <Route exact path='/' component={MemeList} />
+      <Route exact path='/news' component={MemeList} />
+
+      <Route exact path='/auth' component={Auth} />
+      <Route exact path='/register' component={Register} />
+      <Route exact path='/account_recovery' component={AccountRecovery} />
+      <Route exact path='/account_approved' component={AccountApproved} />
+      <Route exact path='/options' component={Options} />
+      <Route exact path='/options_left_menu' component={OptionsLeftMenu} />
+      <Route exact path='/shop' component={Shop} />
+      </div>
+
+      <div className='main_user-content'>
+      <Route path='/user/:number' component={User} />
+      </div>
+
+      <div className='main_users-list'>
+      <Route exact path='/friends' component={FriendsList} />
+      <Route exact path='/friends_requests' component={FriendsRequestsList} />
+      <Route exact path='/users_list' component={UsersList} />
+      <Route exact path='/games_list' component={GamesList} />
+      <Route exact path='/chats_list' component={ChatsList} />
+      <Route exact path='/chat/:number' component={ChatMain} />
+      <Route exact path='/game/:number' component={GameMain} />
+      </div>
+
+
+      </div>
+    }
+
+
     </div>
-
-    <div className='main_user-content'>
-    <Route path='/user/:number' component={User} />
-    </div>
-
-    <div className='main_users-list'>
-    <Route exact path='/friends' component={FriendsList} />
-    <Route exact path='/users_list' component={UsersList} />
-    <Route exact path='/games_list' component={GamesList} />
-    <Route exact path='/chats_list' component={ChatsList} />
-    <Route exact path='/chat/:number' component={ChatMain} />
-    <Route exact path='/game/:number' component={GameMain} />
-    </div>
-
-    
-    </div>
-  }
-
-
-  </div>
-  );
+    );
 }
 
 export default App;

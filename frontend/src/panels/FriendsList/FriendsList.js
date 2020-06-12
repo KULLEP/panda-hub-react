@@ -11,8 +11,14 @@ const FriendsList = () => {
 	
 	document.title = 'Друзья';
 	const [popout, setPopout] = useState(<Loader/>);
-	var arr_friends = window.globalInfo.arrInfoFriends;
-	let id = window.globalInfo.infoCurrentUser.id;
+	var arr_friends = window.globalInfo?.arrInfoFriends;
+	let id = window.globalInfo?.infoCurrentUser?.id;
+
+	let num_req_friends = window.globalInfo.countFriendsRequest;
+	var [countFriendsRequest, setCountFriendsRequest] = useState(num_req_friends);
+
+
+
 	useEffect(() => {
 		async function fetchRequest() {
 			await new GetListFriends(id).get();
@@ -23,10 +29,18 @@ const FriendsList = () => {
 
 	return (
 		<div>
-		<Header as='h2' attached='top'>
-		<Link to='users_list'  className={ style.buttonFindFriend } >
+		<Header as='h2' attached='top' className={ style.header }>
+
+		<Link to='users_list' className='float-right'>
 		<Button color='blue'>Найти друзей</Button>
 		</Link>
+
+		<Link to='friends_requests' className='float-right'>
+		<Button color='blue'>Запросы в друзья 
+		<span> {countFriendsRequest}</span>
+		</Button>
+		</Link>
+
 		</Header>
 		<Segment className={ style.mainBlock } >	 
 		<MyRedirect/>
@@ -35,19 +49,19 @@ const FriendsList = () => {
 			arr_friends.map(e => {	
 				return (
 					<Link to={`/user/${e.id}`} className={ style.cardUser } >
-					<Card>
+
+					<div className={ style.img_block }>
 					<ImageMy propsUrl={e.id} propsType='user' />
-					<Card.Content>
-					<Card.Header>{e.first_name} {e.last_name}</Card.Header>
-					<Card.Meta>
-					<span className='date'><Icon name='time' /> Заходил {e.date_last_login}</span>
-					</Card.Meta>
-					<Card.Description>
-					{e.status}
-					</Card.Description>
-					</Card.Content>
-					<Card.Content extra className={ style.nickname }>{e.nickname}</Card.Content>
-					</Card>
+					</div>
+
+					<div className={ style.card_content }>
+					<span className='h4 text-dark' >{e.first_name} {e.last_name}</span>
+					<span className='date float-right text-secondary'><Icon name='time' /> Заходил {e.date_last_login}</span>
+					<p>{e.status}</p>
+					<p extra className='text-dark'>123123{e.nickname}</p>
+
+					</div>
+
 					</Link>
 					)})
 		}

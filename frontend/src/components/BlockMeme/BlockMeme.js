@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { GetListComments, AddOrDelLike } from './_scripts';
 import ImageMy from './../ImageMy/ImageMy';
 import MemeContent from './../MemeContent/MemeContent';
+import ListUsersLikes from './ListUsersLikes';
 
 
 const BlockMeme = ({info}) => {
@@ -16,6 +18,7 @@ const BlockMeme = ({info}) => {
 	repost = ( repost === '' ) ? 0 : repost;
 
 	let like_block = 'like_' + info.id;
+	let above_like_block = 'above_like_block' + info.id;
 	let comments_block = 'comment_' + info.id;
 	let is_like = localStorage.getItem(like_block);
 
@@ -41,6 +44,36 @@ const BlockMeme = ({info}) => {
 		let is_like = localStorage.getItem(id_block);
 		await new AddOrDelLike(id_meme, is_like, id_block).actionLike();
 	};
+
+
+	
+
+
+
+
+
+
+	/* ПРИ НАВЕДЕНИИ НА ЛАЙК */
+	const mouse_over_on_like = (e) => {
+		let this_block = e.currentTarget;
+		let y_pos = document.getElementById(this_block.id).offsetTop;
+		y_pos = y_pos - 60;
+		document.getElementById(above_like_block).style.display = 'block';
+		document.getElementById(above_like_block).style.top = `${y_pos}px`;
+		setTimeout(() => {
+			ReactDOM.render(
+				<ListUsersLikes id_meme={info.id} above_like_block={above_like_block} />
+				,document.getElementById(above_like_block)
+				);
+		}, 300);
+
+
+	}
+
+
+
+
+
 
 	return (
 		<Card className={ style.block } >
@@ -69,61 +102,64 @@ const BlockMeme = ({info}) => {
 
 		<MemeContent content={info.id} contentType={info.content_type} /> 
 		
+		<div id={above_like_block} className={ style.above_like_block }></div>
+
 		<Card.Content className={style.iconBlockContent} >
 
-		{ ( is_like !== 'true')  ?
-		<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
+		{ 
+			( is_like !== 'true')  ?
+			<div onMouseOver={mouse_over_on_like} id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
+			<Button
+			color='red'
+			content={<span>Нравится</span>}
+			icon='heart outline'
+			label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
+			/>
+			</div>
+			:
+			<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
+			<Button
+			color='red'
+			content={<span>Нравится</span>}
+			icon='heart'
+			label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
+			/>
+			</div>
+		}
+
+		<div onClick={get_comments} className={ style.iconText }>
 		<Button
-		color='red'
-		content={<span>Нравится</span>}
-		icon='heart outline'
-		label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
+		color='black'
+		content={<span>Комментарии</span>}
+		icon='comments'
+		label={{ basic: true, color: 'black', pointing: 'left', content: '...' }}
 		/>
 		</div>
-		:
-		<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
+
+
+		<div className={ style.iconText }>
 		<Button
-		color='red'
-		content={<span>Нравится</span>}
-		icon='heart'
-		label={{ basic: true, color: 'red', pointing: 'left', content: likes }}
+		basic
+		color='blue'
+		content={<span>Поделиться</span>}
+		icon='fork'
+		label={{
+			as: 'a',
+			basic: true,
+			color: 'blue',
+			pointing: 'left',
+			content: repost ,
+		}}
 		/>
 		</div>
-	}
 
-	<div onClick={get_comments} className={ style.iconText }>
-	<Button
-	color='black'
-	content={<span>Комментарии</span>}
-	icon='comments'
-	label={{ basic: true, color: 'black', pointing: 'left', content: '...' }}
-	/>
-	</div>
+		</Card.Content>
 
+		<Card.Content id={comments_block} >
 
-	<div className={ style.iconText }>
-	<Button
-	basic
-	color='blue'
-	content={<span>Поделиться</span>}
-	icon='fork'
-	label={{
-		as: 'a',
-		basic: true,
-		color: 'blue',
-		pointing: 'left',
-		content: repost ,
-	}}
-	/>
-	</div>
+		</Card.Content>
 
-	</Card.Content>
-
-	<Card.Content id={comments_block} >
-
-	</Card.Content>
-
-	</Card>
-	)
+		</Card>
+		)
 }
 export default BlockMeme;

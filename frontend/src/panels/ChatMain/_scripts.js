@@ -1,5 +1,5 @@
 import $ from "jquery";
-
+import { Socket } from 'react-socket-io';
 
 export class GetInfoChat {
 
@@ -35,7 +35,7 @@ export class AccessChat {
 		this.id_chat = id_chat;
 	}
 
-	/* ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ */
+	/* ДОСТУП К ЧАТУ */
 	access() {
 		return ( $.ajax({
 			method: 'GET',
@@ -76,34 +76,6 @@ export class GetMessages {
 
 
 
-export class AddMessages {
-
-	url = window.globalInfo.php_url_chat;
-
-	constructor(id_chat, id_user, text, investment) {
-		this.id_chat = id_chat;
-		this.id_user = id_user;
-		this.text = text;
-		this.investment = investment;
-	}
-
-	/* ОТПРАВИТЬ СООБЩЕНИЕ */
-	add() {
-		return ( $.ajax({
-			method: 'GET',
-			url: this.url + 'add_message.php',
-			data: {
-				id_chat: this.id_chat,
-				id_user: this.id_user,
-				text: this.text,
-				investment: this.investment
-			}}
-			)
-		)
-	}
-}
-
-
 export class GetListParticipants {
 
 	url = window.globalInfo.php_url_chat;
@@ -127,4 +99,30 @@ export class GetListParticipants {
 	}
 }
 
+
+
+export class AddNewUserInChat {
+
+	url = window.globalInfo.php_url_chat;
+
+	constructor(chat_id, user_id) {
+		this.chat_id = chat_id;
+		this.user_id = user_id;
+	}
+
+	/* ДОБАВИТЬ УЧАСТНИКА */
+	add() {
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'add_user.php',
+			data: {
+				chat_id: this.chat_id,
+				user_id: this.user_id,
+			},
+			success: e => { console.log(e); }
+		}
+		)
+		)
+	}
+}
 

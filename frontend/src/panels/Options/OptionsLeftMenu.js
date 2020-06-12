@@ -21,6 +21,7 @@ const OptionsLeftMenu = () => {
 		let friends = +document.getElementById('friends').checked;
 		let groups = +document.getElementById('groups').checked;
 		let games = +document.getElementById('games').checked;
+		let shop = +document.getElementById('shop').checked;
 
 
 		arr_result = {
@@ -30,6 +31,7 @@ const OptionsLeftMenu = () => {
 			"friends" : friends,
 			"groups" : groups,
 			"games" : games,
+			"shop" : shop
 		}
 
 		/* UPDATE */
@@ -102,6 +104,10 @@ const OptionsLeftMenu = () => {
 		<Checkbox toggle id='games' defaultChecked={optionsInfo.games} />
 		</Form.Field>
 
+		<Form.Field className={ style.checkBlock } >
+		<span>Магазин</span>
+		<Checkbox toggle id='shop' defaultChecked={optionsInfo.shop} />
+		</Form.Field>
 
 
 

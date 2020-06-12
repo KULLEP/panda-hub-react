@@ -65,7 +65,6 @@ export class AddNewComment {
 				id_user: this.id_user
 			},
 			success: async e => { 
-				console.log(e);
 				await new GetListComments(this.id_meme, this.block_comment).getComments();
 			}
 		})
@@ -78,6 +77,7 @@ export class AddNewComment {
 export class AddOrDelLike {
 
 	url = window.globalInfo.php_url_meme;
+	id_user = window.globalInfo.infoCurrentUser.id;
 
 	constructor(id_meme, is_like, id_block) { 
 		this.id_meme = id_meme;
@@ -93,7 +93,8 @@ export class AddOrDelLike {
 			url: this.url + 'like.php',
 			data: {
 				id_meme: this.id_meme,
-				is_like: this.is_like
+				is_like: this.is_like,
+				id_user: this.id_user
 			},
 			success: e => { 
 				if(this.is_like === 'true') {
@@ -127,3 +128,24 @@ export class AddOrDelLike {
 
 
 
+export class GetUsersLikesMeme {
+
+	url = window.globalInfo.php_url_meme;
+
+	constructor(id_meme) { 
+		this.id_meme = id_meme;
+	}
+
+	/* ПОЛУЧИТЬ СПИСОК ПОЛЬЗОВАТЕЛЕЙ ПОСТАВИВШИХ ЛАЙК */
+	get() {
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'get_users_likes_meme.php',
+			data: {
+				id_meme: this.id_meme
+			},
+			success: e => e
+		})
+		)
+	};
+}

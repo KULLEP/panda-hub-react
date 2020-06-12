@@ -23,30 +23,32 @@ const ChatsList = () => {
 	}, []);
 
 	return (
-		<div className='w-100'>
-		<Header as='h2' attached='top'>
-	 
+
+		<div>
+		<Header as='h2' attached='top' className={ style.header }>
+
+
 		<Modal
 		className={ style.modal }
-		trigger={<Button color='green' className={ style.button_create }>Создать чат</Button>}
+		trigger={<Button color='green'>Создать чат</Button>}
 		header='Новый чат!'
 		content={<FormCreateChat/>}
 		actions={['Отмена']}
 		/>
-		 
+
 		</Header>
 		<Segment className={ style.mainBlock } >	 
 		<MyRedirect/>
 		{
 			popout !== null ? popout :
-			arr_chats_list.map(e => {
+			arr_chats_list.map(e => {	
 				return (
 					<ChatCard info={e} />
-					)}
-				)
+					)})
 		}
 		</Segment>
 		</div>
+ 
 		)
 
 }

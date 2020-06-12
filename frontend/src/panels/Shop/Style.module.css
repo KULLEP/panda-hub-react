@@ -1,5 +1,5 @@
 .mainBlock {
-	width: 550px!important;
+	width: 100%;
 	padding: 10px;
 	background-color: #fff;
 	border-radius: 4px;
@@ -11,6 +11,22 @@
 	flex-wrap: wrap;
 }
 
-.header {
-	height: 60px;
+
+.inputSearch input {
+	height: 40px!important;
+	font-size: 15px;
+}
+
+
+.inputSearch i {
+	font-size: 20px!important;
+}
+
+
+.textName {
+	font-size: 25px;
+}
+
+.tableText {
+	font-size: 20px;
 }

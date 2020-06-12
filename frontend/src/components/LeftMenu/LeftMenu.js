@@ -1,20 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { NavLink, } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
 export default class LeftMenu extends Component {
-	state = { activeItem: 'home' };
+	state = { 
+		activeItem: 'home',
+		countFriendsRequest: window.globalInfo.countFriendsRequest
+	};
 
 
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+
+	componentDidMount() {
+		this.timer = setInterval(() => {
+			this.setState({ countFriendsRequest: window.globalInfo.countFriendsRequest});
+		}, 5000);
+	};
+
+
+
 	render() {
 		const { activeItem } = this.state;
+		let { countFriendsRequest } = this.state;
 
-		var menuInfo = null;
+		var menuInfo = '';
 		var userLink = '/user/' + this.props.info.id;
+
 
 		if(!!this.props.info.options_left_menu) {
 			menuInfo = JSON.parse(this.props.info.options_left_menu);
@@ -69,10 +84,12 @@ export default class LeftMenu extends Component {
 					menuInfo.friends === 1 ?
 					<NavLink to='/friends'>
 					<Menu.Item
+					id='left_menu_friends'
 					name='Друзья'
 					active={activeItem === 'Друзья'}
 					onClick={this.handleItemClick}
-					/>
+					/>	
+					<span className={ style.count_friends }>{countFriendsRequest}</span>			 
 					</NavLink>
 					: null
 				}
@@ -100,6 +117,22 @@ export default class LeftMenu extends Component {
 					</NavLink>
 					: null
 				}
+
+
+				{
+					menuInfo.shop === 1 ?
+					<NavLink to='/shop'>
+					<Menu.Item
+					name='Магазин'
+					active={activeItem === 'Магазин'}
+					onClick={this.handleItemClick}
+					/>
+					</NavLink>
+					: null
+				}
+
+
+
 
 				</Menu> : null
 

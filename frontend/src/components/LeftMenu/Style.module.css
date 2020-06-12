@@ -2,6 +2,13 @@
 	display: none!important;
 }
 
+.count_friends {
+	float: right;
+	margin-top: -23px;
+	margin-right: 5px;
+	color: #343a40!important;
+}
+
 .block {
 	position: fixed;
 	top: 60px;
@@ -28,7 +35,7 @@
 
 
 
-
+/*
 @media screen and (max-width: 768px) {
 	.block {
 		display: none;
@@ -55,4 +62,4 @@
 	}
 
 
-}
+}*/

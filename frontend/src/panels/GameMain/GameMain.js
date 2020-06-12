@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MyRedirect from './../../components/MyRedirect';
 import Loader from './../../components/Loader/Loader';
 import { GetInfoGame } from './_scripts';
+import style from './Style.module.css';
 
 const GameMain = ({match}) => {
 
@@ -24,7 +25,7 @@ const GameMain = ({match}) => {
 
 
 	return (
-		<div className='position-absolute'>
+		<div className={ style.blockContent }>
 		<MyRedirect/>
 		{
 			popout !== null ? popout : 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import MyRedirect from './../../components/MyRedirect';
-import { GetMessages, AccessChat, AddMessages, GetInfoChat } from './_scripts';
+import { GetMessages, AccessChat, GetInfoChat } from './_scripts';
 import Loader from './../../components/Loader/Loader';
 import MessageBlock from './../../components/MessageBlock/MessageBlock';
 import { goToMainPage } from './../../_scripts/RedirectOnPage';
@@ -9,10 +9,17 @@ import { Comment, Header, Card, Form, Button } from 'semantic-ui-react';
 import { HashRouter } from 'react-router-dom';
 import AdminRightMenu from './AdminRightMenu';
 import style from './Style.module.css';
+import openSocket from 'socket.io-client';
+import ReactDOMServer from 'react-dom/server';
+
 
 const ChatMain = ({match}) => {
 
 	const [popout, setPopout] = useState(<Loader/>);
+
+
+	const socket = openSocket('http://localhost:8000');
+
 
 	const id_chat = match.params.number;
 
@@ -39,23 +46,52 @@ const ChatMain = ({match}) => {
 
 
 
+
+	useEffect(() => {
+		let rotationInterval = setInterval(() => {
+			let user_writing;
+			let text_input_value = document.getElementById('form_message').value;
+			let first_name = window.globalInfo.infoCurrentUser.first_name;
+			let last_name = window.globalInfo.infoCurrentUser.last_name;
+			if (text_input_value) {
+				user_writing = 'Пишет - ' + first_name + ' ' + last_name;
+			}  else {
+				user_writing = '';
+			}
+
+
+			socket.emit('who_writes', {
+				user_writing: user_writing
+			});
+
+
+			ReactDOM.render(<div className=' ml-5'>{window.globalInfo.listOfWriters?.info?.user_writing}</div>,document.getElementById('listOfWriters'));
+
+		}, 3000)
+
+		return () => {
+			clearInterval(rotationInterval);
+		}
+	})
+
+
 	const addMessage = async () => {
 		let message = document.getElementById('form_message').value;
 		let investment = null;
-		if (message.length > 1) {
-			await new AddMessages(id_chat, id_user, message, investment).add();
-			await new GetMessages(id_chat).get();
-			ReactDOM.render(
-				<HashRouter>
-				{
-					window.globalInfo.arrMessages.map(e => (
-						<MessageBlock info={e} />
-						))
-				}
-				</HashRouter>
-				,document.getElementById('comments_block')
-				);
-		}
+		let id_user = window.globalInfo.infoCurrentUser.id;
+		let first_name = window.globalInfo.infoCurrentUser.first_name;
+		let last_name = window.globalInfo.infoCurrentUser.last_name;
+		let date = 'Сейчас';
+
+		socket.emit('add_new_message', {
+			id_chat: id_chat,
+			id_user: id_user,
+			first_name: first_name,
+			last_name: last_name,
+			date: date,
+			text: message
+		});
+
 
 	};
 
@@ -76,7 +112,8 @@ const ChatMain = ({match}) => {
 			}
 			</div>
 			<Form reply>
-			<Form.TextArea placeholder='Сообщение' id='form_message' />
+			<div id='listOfWriters'></div>
+			<Form.TextArea className="mt-3" placeholder='Сообщение' id='form_message' />
 			<Button onClick={addMessage} content='Отправить' labelPosition='left' icon='edit' primary />
 			</Form>
 

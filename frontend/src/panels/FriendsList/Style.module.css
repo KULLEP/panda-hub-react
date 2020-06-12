@@ -1,5 +1,5 @@
 .mainBlock {
-	width: 100%;
+	width: 550px!important;
 	padding: 10px;
 	background-color: #fff;
 	border-radius: 4px;
@@ -11,11 +11,37 @@
 	flex-wrap: wrap;
 }
 
+.header {
+	height: 60px;
+}
 
 .cardUser {
-	width: 160px!important;
+	display: inline-block!important;
+	width: 100vh!important;
 	margin: 15px 15px!important;
+	border-bottom: 1px solid #e7e8ec;
+	width: 100%;
 }
+
+.card_content {
+	padding-left: 100px;
+}
+
+
+.img_block {
+	float: left;
+	width: 80px;
+	height: 80px;
+}
+
+.img_block img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	object-fit: cover;
+}
+
 
 .cardUser img {
 	object-fit: cover;
@@ -23,12 +49,14 @@
 	width: 100%;
 }
 
-.nickname {
-	height: 40px;
+
+.button_request_friend {
+	float: right!important;
+	margin-top: -28px!important;
+	margin-bottom: 10px!important;
 }
 
-
-.buttonFindFriend {
-	left: 430px;
-	position: relative;
+.button_request_friend button {
+	padding: 10px 15px!important;
 }
+ 

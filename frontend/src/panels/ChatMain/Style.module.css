@@ -35,3 +35,43 @@
 .inviteUsers {
 	min-height: 75%;
 }
+
+
+.button_user_add {
+	float: right!important;
+    margin-top: -1.5em!important;
+    margin-right: 30px!important;
+}
+
+.cardUser {
+	display: inline-block!important;
+	width: 100%;
+	margin: 15px 15px!important;
+	border-bottom: 1px solid #e7e8ec;
+}
+
+.card_content {
+	padding-left: 65px;
+}
+
+
+.img_block {
+	float: left;
+	width: 50px;
+	height: 50px;
+}
+
+.img_block img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+
+.cardUser img {
+	object-fit: cover;
+	height: 160px;
+	width: 100%;
+}

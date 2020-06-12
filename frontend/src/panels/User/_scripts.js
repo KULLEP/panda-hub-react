@@ -18,7 +18,11 @@ export class GetInfoUser {
 				id_user: this.id_user
 			},
 			success: e => { 
-				window.globalInfo.infoUser = JSON.parse(e);
+				let res = JSON.parse(e);
+				res.friends = res.friends === '' ? null : res.friends;
+				res.friends_requests = res.friends_requests === '' ? null :  res.friends_requests;
+				window.globalInfo.infoUser = res;
+				return false;
 			}}
 			)
 		)

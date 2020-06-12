@@ -15,16 +15,17 @@ const UserHeader = ({info}) => {
 	var add_user_in_friend = false;
 	var id_current_user = window.globalInfo.infoCurrentUser.id;
 	var arr_friends_requuest = window.globalInfo.infoUser.friends_requests;
-
+	var friends = window.globalInfo.infoCurrentUser.friends;
+	
 	/* ПАРСИНГ ДРУЗЕЙ */
-	const is_friend = JSON.parse(window.globalInfo.infoCurrentUser.friends)?.find(e => +e === +info.id);
+	if(friends === '' || friends === null) { friends = '[-1]'; }
+	const is_friend = JSON.parse(friends)?.find(e => +e === +info.id);
 	this_user_is_friend = is_friend;
-	this_user_is_friend = (this_user_is_friend > 0) ? true : false;
-
+	this_user_is_friend = (this_user_is_friend > 0 || this_user_is_friend !== undefined) ? true : false;
 
 	/* ПАРСИНГ ЗАЯВКИ В ДРУЗЬЯ */
 	if (!this_user_is_friend) {
-		if(arr_friends_requuest === '') { arr_friends_requuest = '[-1]'; }
+		if(arr_friends_requuest === '' || arr_friends_requuest === null) { arr_friends_requuest = '[-1]'; }
 		const is_request_friend = JSON.parse(arr_friends_requuest)?.find(e => +e === +id_current_user);
 		this_user_in_request_friend = is_request_friend;
 		this_user_in_request_friend = (this_user_in_request_friend > 0) ? true : false;

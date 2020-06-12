@@ -47,3 +47,15 @@ export const goToOptionsPage = () => {
 		,document.getElementById('root')
 		);
 }
+
+
+/* ПЕРЕЙТИ В МАГАЗИН */
+export const goToShopPage = () => {
+	ReactDOM.render(
+		<HashRouter>
+		<Redirect from='/' to='/shop' />
+		<App />
+		</HashRouter>
+		,document.getElementById('root')
+		);
+}
