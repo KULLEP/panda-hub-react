@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './Style.module.css';
+import { GetFriends } from './_scripts';
+import { Loader } from 'semantic-ui-react';
+import ImageMy from './../ImageMy/ImageMy';
+import { Link } from 'react-router-dom';
 
 
 const UserFriends = ({info}) => {
 
-	const arrGroup = [1,2,3,4,5,6];
+	const [popout, setPopout] = useState(<Loader/>);
+
+	useEffect(() => {
+		async function fetchRequest() {
+			await new GetFriends(info.id).get();
+			setPopout(null);
+		}
+		fetchRequest();
+	}, []);
+
+
 
 	return (
 		<div className={ style.block } >
@@ -12,11 +26,15 @@ const UserFriends = ({info}) => {
 		<div className={ style.content } >
 
 		{
-			arrGroup.map(e => (
+			popout !== null ?  null :
+			window.globalInfo.arrFriends.map(e => (
+				<Link to={`/user/${e.id}`} >
+
 				<div className={ style.item } >
-				<img avatar src='https://i.pinimg.com/736x/cc/60/c0/cc60c0b7f9664e6d66472b765a50ea56--banff-canada-in-canada.jpg' alt='...' />
-				<p>Friend {e}</p>
+				<ImageMy propsType='user' propsUrl={e.id} /> 
+				<p>{e.first_name}</p>
 				</div>
+				</Link>
 				))
 		}
 		</div>

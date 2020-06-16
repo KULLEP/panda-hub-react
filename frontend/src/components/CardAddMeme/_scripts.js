@@ -4,24 +4,28 @@ export class PostMeme {
 
 	url = window.globalInfo.php_url_meme;
 	
-	constructor(id_user, text, contentType) { 
+	constructor(id_user, text, contentType, id_group) { 
 		this.id_user = id_user;
 		this.text = text;
 		this.contentType = contentType;
+		this.id_group = id_group;
 	}
 
 	/* СОЗДАТЬ МЕМ */
-	post = () => ( $.ajax({
+	post() { 
+		return ( $.ajax({
 		method: 'GET',
 		url: this.url + 'post_meme.php',
 		data: {
 			id_user: this.id_user,
 			text: this.text,
-			contentType: this.contentType
+			contentType: this.contentType,
+			id_group: this.id_group
 		},
 		success: e => e
 	})
 	)
+}
 }
 
 
@@ -36,7 +40,7 @@ export class SaveAndRenameImage {
 	}
 
 	/* СОХРАНИТЬ И ПЕРЕИМЕНОВАТЬ КОНТЕНТ МЕМА */
-	action = () => {
+	action() {
 		var form_data = new FormData();
 		form_data.append('file', this.content, this.id_meme + this.contentType);
 		return ( $.ajax({

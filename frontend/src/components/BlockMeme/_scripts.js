@@ -149,3 +149,34 @@ export class GetUsersLikesMeme {
 		)
 	};
 }
+
+
+
+
+
+
+
+export class Repost {
+
+	url = window.globalInfo.php_url_meme;
+	id_user = window.globalInfo.infoCurrentUser.id;
+
+
+	constructor(id_meme) { 
+		this.id_meme = id_meme;
+	}
+
+	/* РЕПОСТ */
+	add() {
+		return ( $.ajax({
+			method: 'GET',
+			url: this.url + 'repost.php',
+			data: {
+				id_meme: this.id_meme,
+				id_user: this.id_user
+			},
+			success: e => e
+		})
+		)
+	};
+}

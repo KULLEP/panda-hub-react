@@ -59,3 +59,17 @@ export const goToShopPage = () => {
 		,document.getElementById('root')
 		);
 }
+
+
+
+
+/* ПЕРЕЙТИ В ГРУППУ */
+export const goToGroup = (id) => {
+	ReactDOM.render(
+		<HashRouter>
+		<Redirect from='/' to={`/group/${id}`}  />
+		<App />
+		</HashRouter>
+		,document.getElementById('root')
+		);
+}

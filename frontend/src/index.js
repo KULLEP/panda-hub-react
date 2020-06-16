@@ -14,10 +14,12 @@ window.globalInfo = {
 	positionYForBack: 0,
 	chat_is_admin: 0,
 	infoUser: {},
+	infoGroup: {},
 	infoCurrentUser: {},
 	InfoChat: {},
 	InfoGame: {},
 	arrInfoMemes: [],
+	arrInfoMemesUser: [],
 	arrInfoFriends: [],
 	arrInfoFriendsRequests: [],
 	arrInfoUsers: [],
@@ -26,6 +28,9 @@ window.globalInfo = {
 	arrInfoChatsList: [],
 	arrMessages: [],
 	arrUsersLikesMemes: [],
+
+	arrFriends: [],
+	arrGroups: [],
 
 	listOfWriters: '',
 
@@ -43,6 +48,7 @@ window.globalInfo = {
 	php_url_chat:  mainUrl + 'php/chat/',
 	php_url_game:  mainUrl + 'php/game/',
 	php_url_shop:  mainUrl + 'php/shop/',
+	php_url_group:  mainUrl + 'php/group/',
 };
 
 

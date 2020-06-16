@@ -18,7 +18,7 @@ export default class LeftMenu extends Component {
 	componentDidMount() {
 		this.timer = setInterval(() => {
 			this.setState({ countFriendsRequest: window.globalInfo.countFriendsRequest});
-		}, 5000);
+		}, 2000);
 	};
 
 
@@ -96,7 +96,7 @@ export default class LeftMenu extends Component {
 
 				{
 					menuInfo.groups === 1 ?
-					<NavLink to='/groups'>
+					<NavLink to='/groups_list'>
 					<Menu.Item
 					name='Группы'
 					active={activeItem === 'Группы'}

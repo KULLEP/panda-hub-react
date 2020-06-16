@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import style from './Style.module.css';
 import BlockMeme from'./../BlockMeme/BlockMeme';
-import { GetListMemes } from './../../panels/MemeList/_scripts';
+import { GetMemesUser } from './_scripts';
 import Loader from './../Loader/Loader';
 
 
 const UserMainContent = ({info}) => {
 
-
-
+	 
 	const [popout, setPopout] = useState(<Loader/>);
-	var arr_memes = window.globalInfo.arrInfoMemes;
+	
+	var arr_memes = window.globalInfo.arrInfoMemesUser;
 
 
 	useEffect(() => {
 		async function fetchRequest() {
-			await new GetListMemes().getMemes();
+			await new GetMemesUser(info.id).getMemes();
 			setPopout(null);
 		}
 		fetchRequest();

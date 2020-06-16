@@ -1,0 +1,12 @@
+.right_menu {
+	position: fixed;
+	right: calc(50vw - 500px);
+	top:  100px;
+	width: 150px;
+	padding: 15px 0px;
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	margin: 15px 0 0;
+	text-align: center;
+}

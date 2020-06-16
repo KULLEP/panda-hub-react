@@ -15,13 +15,13 @@ const ListUsersLikes = ({id_meme, above_like_block}) => {
 		);
 	
 
-	var arrUsersLikesMemes = window.globalInfo.arrUsersLikesMemes;
+
 
 
 	useEffect(() => {
 		async function fetchRequest() {
-			arrUsersLikesMemes = await new GetUsersLikesMeme(id_meme).get();
-			// window.globalInfo.arrUsersLikesMemes = await new GetUsersLikesMeme(id_meme).get();
+			let arrUsersLikesMemes = await new GetUsersLikesMeme(id_meme).get();
+			window.globalInfo.arrUsersLikesMemes = arrUsersLikesMemes ? JSON.parse(arrUsersLikesMemes) : [];
 			setPopout(null);
 		}
 		fetchRequest();
@@ -31,25 +31,22 @@ const ListUsersLikes = ({id_meme, above_like_block}) => {
 
 
 	/* ПРИ ПОКИДАНИИ КУРСОРА БЛОКА С ЛАЙКОМ */
-	const mouse_out_like = () => {
-		console.log('out °')
-		setTimeout(() => {
-			document.getElementById(above_like_block).style.display = 'none';
-		}, 4000);
+	const mouse_out_like = (e) => {
+		document.getElementById(above_like_block).style.display = 'none';
 	}
 
 	return (
 		<HashRouter>
-		<div className='w-100' onMouseOut={mouse_out_like}>
+		<div className='w-100' onMouseLeave={mouse_out_like}>
 		{
 			popout !== null ? popout : 
 			<div>
 			{
-				arrUsersLikesMemes.map((e) => {
-					let full_name = e.first_name + ' ' + e.last_name;
+				window.globalInfo.arrUsersLikesMemes.map((e) => {
+					let full_name = e.user_first_name + ' ' + e.user_last_name;
 					return (
-						<Link title={full_name} to={`/user/${e.id}`} className={ style.mini_user_like } >
-						<ImageMy propsType='user' propsUrl={e.id} /> 
+						<Link title={full_name} to={`/user/${e.user_id}`} className={ style.mini_user_like } >
+						<ImageMy propsType='user' propsUrl={e.user_id} /> 
 						</Link>
 						)
 				})

@@ -67,7 +67,7 @@ const ChatMain = ({match}) => {
 
 			ReactDOM.render(<div className=' ml-5'>{window.globalInfo.listOfWriters?.info?.user_writing}</div>,document.getElementById('listOfWriters'));
 
-		}, 3000)
+		}, 2000)
 
 		return () => {
 			clearInterval(rotationInterval);

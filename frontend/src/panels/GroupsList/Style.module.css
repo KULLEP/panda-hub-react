@@ -1,0 +1,62 @@
+.mainBlock {
+	width: 550px!important;
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	display: flex;
+	justify-content: center;
+	margin: 0px!important;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.header {
+	height: 60px;
+}
+
+.cardUser {
+	display: inline-block!important;
+	width: 100vh!important;
+	margin: 15px 15px!important;
+	border-bottom: 1px solid #e7e8ec;
+	width: 100%;
+}
+
+.card_content {
+	padding-left: 100px;
+}
+
+
+.img_block {
+	float: left;
+	width: 80px;
+	height: 80px;
+}
+
+.img_block img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+
+.cardUser img {
+	object-fit: cover;
+	height: 160px;
+	width: 100%;
+}
+
+
+.button_request_friend {
+	float: right!important;
+	margin-top: -28px!important;
+	margin-bottom: 10px!important;
+}
+
+.button_request_friend button {
+	padding: 10px 15px!important;
+}
+ 

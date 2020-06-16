@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'semantic-ui-react';
 import style from './Style.module.css';
-import { GetListComments, AddOrDelLike } from './_scripts';
+import { GetListComments, AddOrDelLike, Repost } from './_scripts';
 import ImageMy from './../ImageMy/ImageMy';
 import MemeContent from './../MemeContent/MemeContent';
 import ListUsersLikes from './ListUsersLikes';
@@ -12,10 +12,13 @@ import ListUsersLikes from './ListUsersLikes';
 const BlockMeme = ({info}) => {
 
 	let likes = info.likes;
-	let repost = info.repost;
+	let repost = info.reposts;
+
 
 	likes = ( likes === '' ) ? 0 : likes;
 	repost = ( repost === '' ) ? 0 : repost;
+	const [reposts, setRepost] = useState(repost);
+
 
 	let like_block = 'like_' + info.id;
 	let above_like_block = 'above_like_block' + info.id;
@@ -47,7 +50,11 @@ const BlockMeme = ({info}) => {
 
 
 	
-
+	/* РЕПОСТ */
+	const onClickRepost = async (e, data) => {
+		let countRepost = await new Repost(info.id).add();
+		setRepost(countRepost);
+	};
 
 
 
@@ -66,8 +73,6 @@ const BlockMeme = ({info}) => {
 				,document.getElementById(above_like_block)
 				);
 		}, 300);
-
-
 	}
 
 
@@ -117,7 +122,7 @@ const BlockMeme = ({info}) => {
 			/>
 			</div>
 			:
-			<div id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
+			<div onMouseOver={mouse_over_on_like} id={like_block} data-id-meme={info.id} onClick={clickLike} className={ style.iconText } >
 			<Button
 			color='red'
 			content={<span>Нравится</span>}
@@ -139,6 +144,7 @@ const BlockMeme = ({info}) => {
 
 		<div className={ style.iconText }>
 		<Button
+		onClick={onClickRepost}
 		basic
 		color='blue'
 		content={<span>Поделиться</span>}
@@ -148,7 +154,7 @@ const BlockMeme = ({info}) => {
 			basic: true,
 			color: 'blue',
 			pointing: 'left',
-			content: repost ,
+			content: reposts,
 		}}
 		/>
 		</div>

@@ -9,6 +9,8 @@ import MyRedirect from './components/MyRedirect';
 import MemeList from './panels/MemeList/MemeList';
 import FriendsList from './panels/FriendsList/FriendsList';
 import FriendsRequestsList from './panels/FriendsList/FriendsRequestsList';
+import GroupsList from './panels/GroupsList/GroupsList';
+import GroupsListAll from './panels/GroupsListAll/GroupsListAll';
 import UsersList from './panels/UsersList/UsersList';
 import GamesList from './panels/GamesList/GamesList';
 import User from './panels/User/User';
@@ -17,6 +19,7 @@ import Register from './panels/Register/Register';
 import AccountApproved from './panels/Register/AccountApproved';
 import AccountRecovery from './panels/AccountRecovery/AccountRecovery';
 import GameMain from './panels/GameMain/GameMain';
+import GroupMain from './panels/GroupMain/GroupMain';
 import ChatsList from './panels/ChatsList/ChatsList';
 import Options from './panels/Options/Options';
 import ChatMain from './panels/ChatMain/ChatMain';
@@ -99,6 +102,8 @@ const App = () => {
       <Route exact path='/options' component={Options} />
       <Route exact path='/options_left_menu' component={OptionsLeftMenu} />
       <Route exact path='/shop' component={Shop} />
+      <Route exact path='/groups_list' component={GroupsList} />
+      <Route exact path='/groups_all' component={GroupsListAll} />
       </div>
 
       <div className='main_user-content'>
@@ -113,6 +118,7 @@ const App = () => {
       <Route exact path='/chats_list' component={ChatsList} />
       <Route exact path='/chat/:number' component={ChatMain} />
       <Route exact path='/game/:number' component={GameMain} />
+      <Route exact path='/group/:number' component={GroupMain} />
       </div>
 
 

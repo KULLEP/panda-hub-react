@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import ImageMy from './../ImageMy/ImageMy';
 import { Icon } from 'semantic-ui-react';
 import { SaveAndRenameImage, PostMeme } from './_scripts';
-import { goToMainPage } from './../../_scripts/RedirectOnPage';
+import { goToMainPage, goToGroup } from './../../_scripts/RedirectOnPage';
 
-const CardAddMeme = () => {
+const CardAddMeme = ({id_group}) => {
 
 	const info = window.globalInfo.infoCurrentUser;
 	const id_user = window.globalInfo.infoCurrentUser.id;
@@ -26,11 +26,16 @@ const CardAddMeme = () => {
 
 	const postMeme = async () => {
 		let text_meme = document.getElementById('input_text_meme').value;
-		let id_meme = await new PostMeme(id_user, text_meme, contentType).post();
+		let id_meme = await new PostMeme(id_user, text_meme, contentType, id_group).post();
 		if(content !== undefined) {
 			await new SaveAndRenameImage(id_meme, content, contentType).action();
 		}
-		goToMainPage();
+		if (id_group) {
+			goToGroup(id_group);
+		} else {
+			goToMainPage();
+		}
+		
 	};
 
 	return (
