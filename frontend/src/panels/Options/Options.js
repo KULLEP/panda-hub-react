@@ -4,7 +4,7 @@ import { Card, Button, Form } from 'semantic-ui-react';
 import { EditOptions, SaveImage } from './_scripts.js';
 import { GetInfoCurrentUser } from './../../_scripts/ActionsWithUser';
 import Loader from './../../components/Loader/Loader';
-
+import { goToOptionsPage } from './../../_scripts/RedirectOnPage';
 
 const Options = () => {
 
@@ -40,6 +40,7 @@ const Options = () => {
 		if(first_name !== '' && last_name !== '') {
 			await new EditOptions(id_user, first_name, last_name, nickname, country,  status, city, age, sex).edit();
 		}
+		goToOptionsPage();
 	};
 
 

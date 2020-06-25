@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import MyRedirect from './../../components/MyRedirect';
-import { GetListGroups } from './_scripts';
+import { GetListGroups, CreateNewGroup } from './_scripts';
 import Loader from './../../components/Loader/Loader';
-import { Card, Icon, Header, Segment, Button } from 'semantic-ui-react';
+import { Card, Icon, Header, Segment, Button, Form, Modal } from 'semantic-ui-react';
 import style from './Style.module.css';
-import { Link } from 'react-router-dom';
+import App from './../../App';
+import { Link, HashRouter, Redirect } from 'react-router-dom';
 import ImageMy from './../../components/ImageMy/ImageMy';
 
 const GroupsList = () => {
@@ -14,7 +16,7 @@ const GroupsList = () => {
 
 
 	var arr_groups = window.globalInfo.arrGroups;
- 
+
 
 
 	useEffect(() => {
@@ -26,9 +28,42 @@ const GroupsList = () => {
 		fetchRequest();
 	});
 
+
+	const createNewGroup = async () => {
+	 	let name_group = document.getElementById('name_group_input').value;
+	 	await new CreateNewGroup(name_group).create();
+		ReactDOM.render(
+			<HashRouter>
+			<Redirect from='/' to='/groups_list'/>
+			<App />
+			</HashRouter>
+			,document.getElementById('root')
+			);
+	}
+
+
 	return (
 		<div>
 		<Header as='h2' attached='top' className={ style.header }>
+
+		<Modal className={ style.main_modal } trigger={<Button basic color='green' >Создать группу</Button>}>
+		<Modal.Header>Создать группу</Modal.Header>
+		<Modal.Content>
+		<Modal.Description>
+		<Form>
+
+		<Form.Field>
+		<label>Название</label>
+		<input id='name_group_input' placeholder='Название группы' />
+		</Form.Field>
+
+		<Button className='float-right' onClick={createNewGroup} inverted color='blue' >Создать</Button>
+		</Form>
+
+		</Modal.Description>
+		</Modal.Content>
+		</Modal>
+
 
 		<Link to='groups_all' className='float-right'>
 		<Button color='blue'>Найти группу</Button>

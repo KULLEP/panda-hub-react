@@ -27,14 +27,7 @@ const ChatsList = () => {
 		<div>
 		<Header as='h2' attached='top' className={ style.header }>
 
-
-		<Modal
-		className={ style.modal }
-		trigger={<Button color='green'>Создать чат</Button>}
-		header='Новый чат!'
-		content={<FormCreateChat/>}
-		actions={['Отмена']}
-		/>
+		<FormCreateChat/>
 
 		</Header>
 		<Segment className={ style.mainBlock } >	 
@@ -48,7 +41,7 @@ const ChatsList = () => {
 		}
 		</Segment>
 		</div>
- 
+
 		)
 
 }

@@ -34,10 +34,10 @@ const OptionsLeftMenu = () => {
 			"shop" : shop
 		}
 
-		/* UPDATE */
+		/* ОБНОВИТЬ */
 		await new EditOptionsLeftMenu(id_user, arr_result).edit();
 
-		/* GET NEW INFO USER */
+		/* ОБНОВИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ */
 		goToOptionsPage();
 	}
 

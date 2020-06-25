@@ -73,3 +73,17 @@ export const goToGroup = (id) => {
 		,document.getElementById('root')
 		);
 }
+
+
+
+
+/* ПЕРЕЙТИ НА СТРАНИЦУ СО СПИСКОМ ИГР */
+export const goToGameListPage = (id) => {
+	ReactDOM.render(
+		<HashRouter>
+		<Redirect from='/' to='games_list'  />
+		<App />
+		</HashRouter>
+		,document.getElementById('root')
+		);
+}

@@ -3,6 +3,8 @@ import MyRedirect from './../../components/MyRedirect';
 import { GetListGames } from './_scripts';
 import Loader from './../../components/Loader/Loader';
 import GameCard from './../../components/GameCard/GameCard';
+import style from './Style.module.css';
+import { Link } from 'react-router-dom';
 
 
 const GamesList = () => {
@@ -21,7 +23,15 @@ const GamesList = () => {
 	});
 
 	return (
-		<div className='w-100'>	 
+		<div className='w-100'>	
+
+		<div className={ style.right_menu }>
+		<Link to='/developer' >
+		Я разработчик
+		</Link>
+		</div>
+
+
 		<MyRedirect/>
 		{
 			popout !== null ? popout :

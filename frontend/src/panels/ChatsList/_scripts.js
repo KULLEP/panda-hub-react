@@ -31,7 +31,7 @@ export class CreateNewChats {
 	id = window.globalInfo.infoCurrentUser.id;
 
 	constructor(name_chat) {
-		this.name_chat = +name_chat;
+		this.name_chat = name_chat;
 	}
 
 	/* СОЗДАТЬ НОВЫЙ ЧАТ */

@@ -53,7 +53,7 @@ const ChatMain = ({match}) => {
 			let text_input_value = document.getElementById('form_message').value;
 			let first_name = window.globalInfo.infoCurrentUser.first_name;
 			let last_name = window.globalInfo.infoCurrentUser.last_name;
-			if (text_input_value) {
+			if (text_input_value.length > 0) {
 				user_writing = 'Пишет - ' + first_name + ' ' + last_name;
 			}  else {
 				user_writing = '';

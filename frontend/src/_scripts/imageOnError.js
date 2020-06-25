@@ -12,7 +12,7 @@ export const imgLoaded = (img) => {
 // ЗАГРУЗКА АЛЬТЕРНАТИВНОГО ИЗОБРАЖЕНИЯ
 export const imgError = (image) => {
 	image.onerror = "";
-	image.src = "https://upload.vsemayki.ru/39714f56b48568d8fd69b6bd91bfd660.jpg";
+	image.src = "file:///C:/Users/Максим/Desktop/img_meme.jpg";
 	return true;
 };
 

@@ -31,7 +31,7 @@ const UsersList = () => {
 		let name = e.target.value;
 		let block = '.' + style.mainBlock;
 		console.log(block);
-		if(name.length > 1 && name.length < 30) {
+		if(name.length > 0 && name.length < 30) {
 			await new GetListUsersSearch(name, block).get();
 			let arr_users_search = window.globalInfo.arrInfoUsersSearch;
 			ReactDOM.render(

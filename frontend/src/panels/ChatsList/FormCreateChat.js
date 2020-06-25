@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Redirect } from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Modal } from 'semantic-ui-react';
 import { CreateNewChats } from './_scripts';
 import style from './Style.module.css';
 import App from './../../App';
@@ -24,17 +24,30 @@ const FormCreateChat = () => {
 
 
 	return (
-		<Form className={ style.form }>
+
+		<Modal className={ style.main_modal } trigger={<Button basic color='green' >Создать чат</Button>}>
+		<Modal.Header>Создать чат</Modal.Header>
+		<Modal.Content>
+		<Modal.Description>
+		<Form>
+
 		<Form.Field>
 		<label>Название</label>
 		<input placeholder='Название чата' id='name_chat_input' />
 		</Form.Field>
+
 		<Form.Field>
 		<label>Фото</label>
 		<input type='file' className="form-control-file" />
 		</Form.Field>
-		<Button onClick={submit} type='submit' color='green'>Создать</Button>
+
+		<Button className='float-right' onClick={submit} inverted color='blue' >Создать</Button>
 		</Form>
+
+		</Modal.Description>
+		</Modal.Content>
+		</Modal>
+ 
 		)
 
 }

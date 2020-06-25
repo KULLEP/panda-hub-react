@@ -13,6 +13,7 @@ import GroupsList from './panels/GroupsList/GroupsList';
 import GroupsListAll from './panels/GroupsListAll/GroupsListAll';
 import UsersList from './panels/UsersList/UsersList';
 import GamesList from './panels/GamesList/GamesList';
+import Developer from './panels/Developer/Developer';
 import User from './panels/User/User';
 import Auth from './panels/Auth/Auth';
 import Register from './panels/Register/Register';
@@ -119,6 +120,7 @@ const App = () => {
       <Route exact path='/chat/:number' component={ChatMain} />
       <Route exact path='/game/:number' component={GameMain} />
       <Route exact path='/group/:number' component={GroupMain} />
+      <Route exact path='/developer' component={Developer} />
       </div>
 
 

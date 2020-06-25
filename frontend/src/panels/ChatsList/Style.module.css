@@ -14,3 +14,8 @@
 .header {
 	height: 60px;
 }
+
+.main_modal {
+	top: 35px!important;
+	height: 560px;
+}
